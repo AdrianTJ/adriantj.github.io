@@ -40,3 +40,8 @@ def say_hello():
 
 say_hello()   // "hello world!"
 ```
+
+Addint testing of LaTeX: $x = 12$. 
+
+$$ \nabla_\boldsymbol{x} J(\boldsymbol{x}) $$
+
