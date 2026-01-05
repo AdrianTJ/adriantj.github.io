@@ -6,31 +6,61 @@
     "email": "adrian.tame.jacobo@gmail.com",
     "phone": "(912) 123-4567",
     "url": "https://adriantj.github.io/",
-    "summary": "Mathematician specializing in applied statistics and optimization. Data Scientist with a career spanning market research & consulting, hands-on data science, and data science management.",
-    "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "Mexico City",
-      "countryCode": "MX",
-      "region": "CMX"
-    },
-    "profiles": [
-      {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
-      }
-    ]
+    "summary": "Mathematician specializing in applied statistics and optimization. Data Scientist with a career spanning market research & consulting, hands-on data science, and data science management."
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity"]
+      "name": "Zillow Group",
+      "position": "Senior Data Scientist",
+      "url": "https://www.zillowgroup.com/",
+      "startDate": "2024-02-01",
+      "highlights": [
+        "Principal data scientist & data engineer for all consumer acquisition and engagement data products, including consumer segmentation and marketing A/B tests.",
+        "Primary interviewer and onboarding partner for Data Science, Engineering and Analytics roles.",
+        "Designer and developer for user facing search algorithms and strategic revenue operations ML models.",
+        "Maintainer and core contributor for internal generative AI tools for SQL applications."
+      ]
+    },
+    {
+      "name": "Coca-Cola FEMSA",
+      "position": "Data Science Manager",
+      "url": "https://coca-colafemsa.com/en/",
+      "startDate": "2023-08-01",
+      "endDate": "2024-02-01",
+      "highlights": [
+        "Project lead for all Generative AI efforts for the company.",
+        "Analytics lead for select projects in Finance, Revenue Growth Management, Procurement, Marketing and E-commerce.",
+        "Translation of data-driven insights into relevant stories and insights for senior executive-level audiences."
+      ]
+    },
+    {
+      "name": "Coca-Cola FEMSA",
+      "position": "Senior Data Scientist",
+      "url": "https://coca-colafemsa.com/en/",
+      "startDate": "2022-09-01",
+      "endDate": "2023-08-01",
+      "highlights": [
+        "Analytics lead for Revenue Growth Management projects (market share analysis, price optimization, promotion evaluation).",
+        "Analytics lead for Finance & Procurement projects (probabilistic optimization of financial hedging strategies).",
+        "Team and project lead for Data Finance projects."
+      ]
+    },
+    {
+      "name": "Rainmaker Group",
+      "position": "Business Intelligence Consultant",
+      "url": "https://www.rainmakergroup.com/",
+      "startDate": "2022-06-01",
+      "endDate": "2022-09-01",
+      "highlights": [
+        "Delivered data-driven solutions for internal tooling, improving reporting automation and decision efficiency."
+      ]
+    },
+    {
+      "name": "Pinecone Labs",
+      "position": "Tech Lead & Founder",
+      "startDate": "2020-01-01",
+      "endDate": "2022-06-01",
+      "highlights": ["Built a startup based on a recommendation system for art based on computer vision and clustering algorithms."]
     }
   ],
   "education": [
