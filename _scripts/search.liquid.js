@@ -24,7 +24,7 @@ ninja.data = [
         {%- for child in p.children -%}
           {%- unless child.title == 'divider' -%}
             {
-              {%- assign title = child.title | escape | strip -%}
+              {%- assign title = child.title | default: "" | escape | strip -%}
               {%- if child.permalink contains "/blog/" -%}{%- assign url = "/blog/" -%} {%- else -%}{%- assign url = child.permalink -%}{%- endif -%}
               id: "dropdown-{{ title | slugify }}",
               title: "{{ title | truncatewords: 13 }}",
@@ -39,7 +39,7 @@ ninja.data = [
 
       {%- else -%}
         {
-          {%- assign title = p.title | escape | strip -%}
+          {%- assign title = p.title | default: "" | escape | strip -%}
           {%- if p.permalink contains "/blog/" -%}{%- assign url = "/blog/" -%} {%- else -%}{%- assign url = p.url -%}{%- endif -%}
           id: "nav-{{ title | slugify }}",
           title: "{{ title | truncatewords: 13 }}",
@@ -55,7 +55,7 @@ ninja.data = [
   {%- if site.posts_in_search -%}
     {%- for post in site.posts -%}
       {
-        {%- assign title = post.title | escape | strip -%}
+        {%- assign title = post.title | default: "" | escape | strip -%}
         id: "post-{{ title | slugify }}",
         {% if post.redirect == blank %}
           title: "{{ title | truncatewords: 13 }}",
@@ -83,9 +83,9 @@ ninja.data = [
       {%- for item in collection.docs -%}
         {
           {%- if item.inline -%}
-            {%- assign title = item.content | newline_to_br | replace: "<br />", " " | replace: "<br/>", " " | strip_html | strip_newlines | escape | strip -%}
+            {%- assign title = item.content | default: "" | newline_to_br | replace: "<br />", " " | replace: "<br/>", " " | strip_html | strip_newlines | escape | strip -%}
           {%- else -%}
-            {%- assign title = item.title | newline_to_br | replace: "<br />", " " | replace: "<br/>", " " | strip_html | strip_newlines | escape | strip -%}
+            {%- assign title = item.title | default: "" | newline_to_br | replace: "<br />", " " | replace: "<br/>", " " | strip_html | strip_newlines | escape | strip -%}
           {%- endif -%}
           id: "{{ collection.label }}-{{ title | slugify }}",
           title: '{{ title | escape | emojify | truncatewords: 13 }}',
