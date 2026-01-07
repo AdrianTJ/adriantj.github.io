@@ -412,19 +412,16 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
-          description: "",
-          section: "News",},{id: "news-search-algorithm-simulations-talk-in-guadalajara-mexico",
+            },},{id: "news-search-algorithm-simulations-talk-in-guadalajara-mexico",
           title: 'Search algorithm simulations talk in Guadalajara, Mexico',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/announcement_1/";
+              window.location.href = "/news/2025-10-22_gdl_conference/";
+            },},{id: "news-starting-migration-to-new-personal-website",
+          title: 'Starting migration to new personal website',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-01-02_new_site/";
             },},{id: "projects-project-1",
           title: 'project 1',
           description: "with background image",
