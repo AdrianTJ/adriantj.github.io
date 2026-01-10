@@ -44,7 +44,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/books/";
           },
-        },{id: "post-a-post-with-plotly-js",
+        },{id: "post-three-ways-to-run-sql-locally",
+        
+          title: "three ways to run SQL locally",
+        
+        description: "a small guide I wish I had when learning data science",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/local_sql/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
         
