@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: senior data scientist @ <a href='https://www.zillowgroup.com/'>zillow</a>. mathematician, masters in science @ <a href='https://www.itam.mx/'>itam</a>
+subtitle: lead II data scientist @ <a href='https://www.spglobal.com/'>s&p global</a>. mathematician, masters in science @ <a href='https://www.itam.mx/'>itam</a>
 
 profile:
   align: right
