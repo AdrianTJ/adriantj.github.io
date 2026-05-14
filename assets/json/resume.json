@@ -10,10 +10,21 @@
   },
   "work": [
     {
+      "name": "S&P Global",
+      "position": "Lead Data Scientist",
+      "url": "https://www.spglobal.com/",
+      "startDate": "2026-03-01",
+      "location": "Mexico City, Mexico",
+      "highlights": [
+        "As a member of the EDO Collection Platforms & AI – Cognitive Engineering team, I design and develop GenAI driven and machine learning powered products that support natural language understanding, data extraction, information retrieval, and intelligent data sourcing across S&P Global."
+      ]
+    },
+    {
       "name": "Zillow Group",
       "position": "Senior Data Scientist",
       "url": "https://www.zillowgroup.com/",
       "startDate": "2024-02-01",
+      "endDate": "2026-03-01",
       "highlights": [
         "Principal data scientist & data engineer for all consumer acquisition and engagement data products, including consumer segmentation and marketing A/B tests.",
         "Primary interviewer and onboarding partner for Data Science, Engineering and Analytics roles.",
