@@ -30,7 +30,7 @@ I hold a degree in Mathematics and a Master of Science from **ITAM**.
 
 ## 🌐 Live Site
 
-You can find my full portfolio, blog, and CV at:
+You can find my full portfolio and blog at:
 👉 **[adriantj.github.io](https://adriantj.github.io)**
 
 ## 🛠️ Built With
