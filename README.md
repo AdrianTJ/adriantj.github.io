@@ -7,9 +7,10 @@
 
   <h3>Lead II Data Scientist @ S&P Global</h3>
 
-  [![Website](https://img.shields.io/badge/Website-adriantj.github.io-blue?style=flat-square)](https://adriantj.github.io)
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-adrian--tj-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/adrian-tj/)
-  [![GitHub](https://img.shields.io/badge/GitHub-AdrianTJ-lightgrey?style=flat-square&logo=github)](https://github.com/AdrianTJ)
+[![Website](https://img.shields.io/badge/Website-adriantj.github.io-blue?style=flat-square)](https://adriantj.github.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-adrian--tj-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/adrian-tj/)
+[![GitHub](https://img.shields.io/badge/GitHub-AdrianTJ-lightgrey?style=flat-square&logo=github)](https://github.com/AdrianTJ)
+
 </div>
 
 ---
@@ -21,6 +22,7 @@ Welcome to the source code for my personal portfolio and blog, **[The Paperclip 
 I am a data scientist with a career spanning market research & consulting, hands-on data science, and data science management. I specialize in building analytical capabilities that translate complex data into actionable insights.
 
 My work focuses on:
+
 - **Bayesian Optimization**
 - **Time Series Forecasting** (Modeling temporal dynamics and uncertainty)
 - **Causal Inference** (Measuring impact in complex environments)
