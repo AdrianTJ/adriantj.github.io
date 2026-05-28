@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: lead II data scientist @ <a href='https://www.spglobal.com/'>s&p global</a>. mathematician, masters in science @ <a href='https://www.itam.mx/'>itam</a>
+subtitle: <strong>site under construction!</strong> <br> lead II data scientist @ <a href='https://www.spglobal.com/'>s&p global</a>. mathematician, masters in science @ <a href='https://www.itam.mx/'>itam</a>.
 
 profile:
   align: right
