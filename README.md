@@ -1,4 +1,4 @@
-# Adrian Tame Jacobo
+# Adrian TJ
 
 <div align="center">
   <a href="https://adriantj.github.io">
