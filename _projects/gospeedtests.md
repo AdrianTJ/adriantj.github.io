@@ -13,13 +13,13 @@ github: https://github.com/AdrianTJ/GoSpeedTests
 ### Key Features
 
 - **Three-Tiered Measurement**:
-    - **Network**: Sub-millisecond tracing for DNS, TCP, TLS, and TTFB.
-    - **Browser**: Full page load analysis and Waterfall generation via headless Chrome.
-    - **Vitals**: Real-world Core Web Vitals (LCP, CLS, FCP).
+  - **Network**: Sub-millisecond tracing for DNS, TCP, TLS, and TTFB.
+  - **Browser**: Full page load analysis and Waterfall generation via headless Chrome.
+  - **Vitals**: Real-world Core Web Vitals (LCP, CLS, FCP).
 - **Asynchronous Engine**: Robust job management with a configurable worker pool.
 - **Dual Interface**:
-    - **CLI (`gost`)**: Optimized for ad-hoc testing and scripts.
-    - **API Daemon (`gostd`)**: RESTful API for CI/CD integration.
+  - **CLI (`gost`)**: Optimized for ad-hoc testing and scripts.
+  - **API Daemon (`gostd`)**: RESTful API for CI/CD integration.
 - **Production Ready**: Zero-config SQLite backend, SSRF protection, and Docker support.
 
 Check out the code on [GitHub](https://github.com/AdrianTJ/GoSpeedTests).
