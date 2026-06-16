@@ -68,6 +68,11 @@ ninja.data = [{
           description: "with background image",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
+            },},{id: "projects-gospeedtests",
+          title: 'GoSpeedTests',
+          description: "A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/gospeedtests/";
             },},{
         id: 'social-email',
         title: 'email',
