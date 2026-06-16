@@ -3,30 +3,16 @@
 This plan outlines the steps to integrate the "GoSpeedTests" GitHub project into the personal website.
 
 ## 1. Research & Data Gathering
-- [ ] **Confirm GitHub URL**: Verify the exact URL of the `GoSpeedTests` repository (assumed to be `https://github.com/AdrianTJ/GoSpeedTests`).
-- [ ] **Extract Description**: Identify a 1-2 sentence description of the project from its README.
-- [ ] **Gather Metadata**: Determine the "importance" (sorting weight) and "category" (e.g., `work` or `fun`) for the project.
+- [x] **Confirm GitHub URL**: Verified as `https://github.com/AdrianTJ/GoSpeedTests`.
+- [x] **Extract Description**: Identified description and key features from README.
+- [x] **Gather Metadata**: Set importance to 1 and category to `work`.
 
 ## 2. Asset Preparation
-- [ ] **Project Thumbnail**: Select or create a thumbnail image (e.g., `assets/img/gospeedtests.png`). 
-    - *Note: Standard size for the theme is approximately 800x600 for cards.*
+- [x] **Project Thumbnail**: Used existing `assets/img/7.jpg` as a placeholder.
 
 ## 3. Implementation
-- [ ] **Create Project File**: Create `_projects/gospeedtests.md`.
-    - **Front Matter Template:**
-      ```yaml
-      ---
-      layout: page
-      title: GoSpeedTests
-      description: [Project Description]
-      img: assets/img/gospeedtests.png
-      importance: 2
-      category: work
-      github: https://github.com/AdrianTJ/GoSpeedTests
-      ---
-      ```
-    - **Content**: Add a brief overview or "Coming Soon" text if a full showcase isn't ready.
-- [ ] **Update Repositories Data**: (Optional) Add `AdrianTJ/GoSpeedTests` to `_data/repositories.yml` under `github_repos` to show it in the dedicated repositories section.
+- [x] **Create Project File**: Created `_projects/gospeedtests.md`.
+- [x] **Update Repositories Data**: Added `AdrianTJ/GoSpeedTests` to `_data/repositories.yml`.
 
 ## 4. Verification
 - [ ] **Local Preview**: Run `bundle exec jekyll serve` to verify the project card's appearance.
