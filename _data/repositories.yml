@@ -1,15 +1,14 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - AdrianTJ
 
 repo_description_lines_max: 2
 
 github_repos:
+  - AdrianTJ/mollify
+  - AdrianTJ/BayesianOptim_BASS
+  - AdrianTJ/agentic_engineering
+  - AdrianTJ/template-ai-engineering
   - AdrianTJ/GoSpeedTests
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - AdrianTJ/Trading_Strategies
+  - AdrianTJ/Rust-Learning
+  - AdrianTJ/Academic-Archive
