@@ -2,6 +2,7 @@
 layout: page
 title: Mollify
 description: A Rust-native static analysis engine that delivers deterministic codebase intelligence for Python.
+img: assets/img/project_previews/mollify.jpg
 importance: 1
 category: work
 github: https://github.com/AdrianTJ/mollify

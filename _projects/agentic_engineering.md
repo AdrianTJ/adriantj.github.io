@@ -2,6 +2,7 @@
 layout: page
 title: Agentic Engineering
 description: Agents and skills for agentic engineering workflows.
+img: assets/img/project_previews/agentic_engineering.png
 importance: 3
 category: work
 github: https://github.com/AdrianTJ/agentic_engineering

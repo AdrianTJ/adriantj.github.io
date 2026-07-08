@@ -2,6 +2,7 @@
 layout: page
 title: Rust Learning
 description: Notes and code as I learn Rust.
+img: assets/img/project_previews/rust_learning.png
 importance: 1
 category: fun
 github: https://github.com/AdrianTJ/Rust-Learning
