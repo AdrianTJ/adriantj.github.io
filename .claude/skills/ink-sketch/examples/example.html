@@ -1,0 +1,220 @@
+<!doctype html>
+<!--
+  ink-sketch template. Copy this file, edit CONFIG + the COMPOSE section, then
+  render to PNG with scripts/render.sh (pass the SAME width/height as CONFIG).
+  Everything is drawn with the helper library below; you only write the scene.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper, #f4f1ea);
+      }
+      #wrap {
+        background: var(--paper, #f4f1ea);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap"><svg id="art" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <script>
+      /* ===================== CONFIG ===================== */
+      const CONFIG = {
+        W: 1500, // canvas width  (pass to render.sh)
+        H: 560, // canvas height (pass to render.sh)
+        paper: "#f4f1ea", // off-white paper
+        ink: "#17130d", // near-black ink
+        wobble: 6, // roughen displacement (4 tight … 9 loose)
+        grain: 0.016, // roughen frequency (0.010 coarse … 0.02 fine)
+        seed: 21, // change for a different hand
+      };
+
+      /* ============ engine + mark library ============== */
+      const NS = "http://www.w3.org/2000/svg";
+      const wrap = document.getElementById("wrap");
+      const art = document.getElementById("art");
+      document.documentElement.style.setProperty("--paper", CONFIG.paper);
+      wrap.style.width = CONFIG.W + "px";
+      wrap.style.height = CONFIG.H + "px";
+      art.setAttribute("width", CONFIG.W);
+      art.setAttribute("height", CONFIG.H);
+      art.setAttribute("viewBox", `0 0 ${CONFIG.W} ${CONFIG.H}`);
+      art.innerHTML = `<defs>
+        <filter id="rough" x="-15%" y="-15%" width="130%" height="130%">
+          <feTurbulence type="fractalNoise" baseFrequency="${CONFIG.grain}" numOctaves="2" seed="${CONFIG.seed}" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="${CONFIG.wobble}" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <g id="ink" filter="url(#rough)" fill="none" stroke="${CONFIG.ink}"
+         stroke-linecap="round" stroke-linejoin="round"></g>`;
+      const ink = art.querySelector("#ink");
+
+      // deterministic RNG so a scene renders identically every time
+      let _s = (CONFIG.seed * 2654435761) >>> 0;
+      const rnd = () => ((_s = (_s * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
+      const rr = (a, b) => a + (b - a) * rnd();
+      const setSeed = (n) => (_s = (n * 2654435761) >>> 0);
+
+      // raw stroke. w = width, o = extra attributes ({}).
+      function P(d, w = 3, o) {
+        const p = document.createElementNS(NS, "path");
+        p.setAttribute("d", d);
+        p.setAttribute("stroke-width", w);
+        if (o) for (const k in o) p.setAttribute(k, o[k]);
+        ink.appendChild(p);
+        return p;
+      }
+      const line = (x0, y0, x1, y1, w = 3) => P(`M${x0} ${y0} L${x1} ${y1}`, w);
+      const curve = (x0, y0, cx, cy, x1, y1, w = 3) =>
+        P(`M${x0} ${y0} Q${cx} ${cy} ${x1} ${y1}`, w);
+      // open or closed polyline through points [[x,y],...]
+      function poly(pts, w = 3, close = false) {
+        let d = `M${pts[0][0]} ${pts[0][1]}`;
+        for (let i = 1; i < pts.length; i++) d += ` L${pts[i][0]} ${pts[i][1]}`;
+        if (close) d += " Z";
+        return P(d, w);
+      }
+
+      // loose daisy / wildflower: radiating tapered petals + a center scribble
+      function bloom(cx, cy, size, n = 8, w = 2) {
+        for (let i = 0; i < n; i++) {
+          const a = (i / n) * Math.PI * 2 + rr(-0.16, 0.16);
+          const r1 = size * rr(0.72, 1.12);
+          const mx = cx + Math.cos(a) * r1 * 0.55,
+            my = cy + Math.sin(a) * r1 * 0.55;
+          const ex = cx + Math.cos(a) * r1,
+            ey = cy + Math.sin(a) * r1;
+          const pa = a + Math.PI / 2,
+            pw = size * 0.16;
+          P(
+            `M${cx + Math.cos(a) * size * 0.14} ${cy + Math.sin(a) * size * 0.14}` +
+              ` Q${mx + Math.cos(pa) * pw} ${my + Math.sin(pa) * pw} ${ex} ${ey}` +
+              ` Q${mx - Math.cos(pa) * pw} ${my - Math.sin(pa) * pw} ${cx - Math.cos(a) * size * 0.1} ${cy - Math.sin(a) * size * 0.1}`,
+            w,
+          );
+        }
+        P(`M${cx - size * 0.12} ${cy} q${size * 0.12} ${-size * 0.14} ${size * 0.24} 0 q${-size * 0.12} ${size * 0.14} ${-size * 0.24} 0`, w + 0.2);
+      }
+
+      // round, cloud-like blossom (roses / peonies): overlapping bumps
+      function blossom(cx, cy, size, bumps = 7, w = 2.4) {
+        let d = `M${cx + size} ${cy}`;
+        for (let i = 1; i <= bumps; i++) {
+          const a = (i / bumps) * Math.PI * 2;
+          const r = size * rr(0.85, 1.15);
+          const ma = a - Math.PI / bumps;
+          const mr = size * 1.35;
+          d += ` Q${cx + Math.cos(ma) * mr} ${cy + Math.sin(ma) * mr} ${cx + Math.cos(a) * r} ${cy + Math.sin(a) * r}`;
+        }
+        return P(d + " Z", w);
+      }
+
+      // a single leaf (pointed almond) anchored at x,y, pointing at angle (rad)
+      function leaf(x, y, angle, len, w = 2.2) {
+        const ex = x + Math.cos(angle) * len,
+          ey = y + Math.sin(angle) * len;
+        const pa = angle + Math.PI / 2,
+          bw = len * 0.28;
+        const mx = x + Math.cos(angle) * len * 0.5,
+          my = y + Math.sin(angle) * len * 0.5;
+        return P(
+          `M${x} ${y} Q${mx + Math.cos(pa) * bw} ${my + Math.sin(pa) * bw} ${ex} ${ey}` +
+            ` Q${mx - Math.cos(pa) * bw} ${my - Math.sin(pa) * bw} ${x} ${y} Z`,
+          w,
+        );
+      }
+
+      // stem with a few alternating leaves
+      function sprig(x, y, angle, len, w = 2.2) {
+        const ex = x + Math.cos(angle) * len,
+          ey = y + Math.sin(angle) * len;
+        const bend = rr(-len * 0.25, len * 0.25);
+        curve(x, y, (x + ex) / 2 + bend, (y + ey) / 2, ex, ey, w);
+        const nL = 3 + Math.floor(rnd() * 2);
+        for (let i = 1; i <= nL; i++) {
+          const t = i / (nL + 1);
+          const lx = x + (ex - x) * t,
+            ly = y + (ey - y) * t;
+          const side = i % 2 ? 1 : -1;
+          leaf(lx, ly, angle + side * rr(0.7, 1.0), len * rr(0.14, 0.22), w * 0.9);
+        }
+      }
+
+      // scribble/hatch fill inside an axis box — shading, foliage mass, a lit window
+      function hatch(x, y, w, h, gap = 9, sw = 1.6) {
+        for (let o = -h; o < w; o += gap) {
+          const x0 = Math.max(x, x + o),
+            y0 = o < 0 ? y - o : y;
+          const x1 = Math.min(x + w, x + o + h),
+            y1 = o + h > w ? y + (w - o) : y + h;
+          if (x1 > x0) line(x0, y0 + rr(-2, 2), x1, y1 + rr(-2, 2), sw);
+        }
+      }
+
+      // rough rounded-rect outline (frames, screens, boxes)
+      function box(x, y, w, h, r = 10, sw = 4) {
+        return P(
+          `M${x + r} ${y} L${x + w - r} ${y} Q${x + w} ${y} ${x + w} ${y + r}` +
+            ` L${x + w} ${y + h - r} Q${x + w} ${y + h} ${x + w - r} ${y + h}` +
+            ` L${x + r} ${y + h} Q${x} ${y + h} ${x} ${y + h - r}` +
+            ` L${x} ${y + r} Q${x} ${y} ${x + r} ${y} Z`,
+          sw,
+        );
+      }
+
+      // tiny gray index label like the reference sheet ([1], [2], …). Not inked
+      // (drawn crisp, outside the roughen filter).
+      function label(x, y, t) {
+        const e = document.createElementNS(NS, "text");
+        e.setAttribute("x", x);
+        e.setAttribute("y", y);
+        e.setAttribute("font-family", "Helvetica, Arial, sans-serif");
+        e.setAttribute("font-size", 15);
+        e.setAttribute("fill", "#8f8d88");
+        e.textContent = t;
+        art.appendChild(e);
+        return e;
+      }
+
+      /* ===================== COMPOSE ===================== */
+
+
+      /* [1] wildflowers in a vase */
+      label(120, 150, "[1]");
+      P("M150 470 q-18 -48 5 -104 q6 -14 -5 -27 l104 0 q-11 13 -5 27 q24 56 5 104 q-55 27 -104 0 z", 6);
+      curve(95, 478, 202, 496, 310, 478, 5);
+      const T1 = [[120, 190], [205, 150], [285, 182], [318, 262], [86, 286]];
+      T1.forEach((t) => curve(202 + rr(-12, 12), 350, 205 + (t[0] - 205) * 0.4, 262, t[0], t[1], 2.2));
+      T1.forEach((t, i) => bloom(t[0], t[1], rr(24, 34), i % 2 ? 7 : 8));
+
+      /* [2] roses in a jug */
+      label(600, 150, "[2]");
+      setSeed(4);
+      P("M690 470 q-14 -60 2 -120 l150 0 q16 60 2 120 q-78 30 -154 0 z", 6);
+      curve(660, 476, 767, 500, 878, 476, 5);
+      P("M690 360 q-40 8 -34 48 q6 34 40 30", 4.5); // handle
+      const R = [[730, 250], [795, 214], [845, 268], [770, 300], [820, 330]];
+      R.forEach((c) => curve(767, 356, (767 + c[0]) / 2, 320, c[0], c[1], 2.4));
+      R.forEach((c) => blossom(c[0], c[1], rr(22, 30), 7));
+      leaf(740, 340, -2.4, 46); leaf(800, 348, -0.7, 44); leaf(770, 356, -1.6, 40);
+
+      /* [3] a little television */
+      label(1120, 150, "[3]");
+      box(1140, 250, 260, 190, 18, 6); // body
+      box(1165, 272, 150, 146, 8, 4); // screen
+      line(1250, 250, 1225, 205, 3); line(1250, 250, 1285, 200, 3); // antenna
+      line(1180, 440, 1165, 478, 4); line(1360, 440, 1375, 478, 4); // legs
+      // cityscape inside the screen
+      poly([[1172, 400], [1172, 360], [1188, 360], [1188, 336], [1204, 336], [1204, 372], [1222, 372], [1222, 322], [1240, 322], [1240, 356], [1258, 356], [1258, 300], [1276, 300], [1276, 350], [1294, 350], [1294, 372], [1308, 372], [1308, 410]], 2.2);
+      line(1170, 402, 1310, 402, 2.4); // horizon
+      hatch(1176, 372, 30, 26, 8, 1.2); // shaded block
+      // dials
+      P("M1330 288 a7 7 0 1 0 0.1 0", 2.4); P("M1330 316 a7 7 0 1 0 0.1 0", 2.4);
+
+    </script>
+  </body>
+</html>
