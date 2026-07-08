@@ -8,4 +8,4 @@ released: 2022
 status: Finished
 ---
 
-Plastiboo's *Vermis* is an art book disguised as the official strategy guide to a video game that never existed. Drawing on old dungeon crawlers and the grainy, menacing aesthetic of early RPGs, it is a pure act of world-building — maps, monsters, items, and cryptic instructions for a lost game — that invites you to imagine the play around the guide.
+Plastiboo's _Vermis_ is an art book disguised as the official strategy guide to a video game that never existed. Drawing on old dungeon crawlers and the grainy, menacing aesthetic of early RPGs, it is a pure act of world-building — maps, monsters, items, and cryptic instructions for a lost game — that invites you to imagine the play around the guide.
