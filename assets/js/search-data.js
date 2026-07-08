@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/books/";
           },
-        },{id: "post-three-ways-to-run-sql-locally",
+        },{id: "post-mollify-agents-and-integration",
+        
+          title: "Mollify, Agents, and Integration",
+        
+        description: "why codebase intelligence for Python wants to be one integrated tool, and what changes now that the reader is a machine",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/mollify/";
+          
+        },
+      },{id: "post-three-ways-to-run-sql-locally",
         
           title: "three ways to run SQL locally",
         
