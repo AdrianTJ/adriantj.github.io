@@ -18,17 +18,17 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "projects",
-          description: "A growing collection of your cool projects.",
+          description: "A running collection of the things I am building and tinkering with.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "nav-teaching",
-          title: "teaching",
-          description: "Materials for courses you taught. Replace this text with your description.",
+        },{id: "nav-academic",
+          title: "academic",
+          description: "Coursework, notes, and past academic projects.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/teaching/";
+            window.location.href = "/academic/";
           },
         },{id: "nav-bookshelf",
           title: "bookshelf",
@@ -48,11 +48,36 @@ ninja.data = [{
             window.location.href = "/blog/2026/local_sql/";
           
         },
-      },{id: "books-the-godfather",
+      },{id: "books-1q84",
+          title: '1Q84',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/1q84/";
+            },},{id: "books-a-hunger-artist",
+          title: 'A Hunger Artist',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/a_hunger_artist/";
+            },},{id: "books-homesick-for-another-world",
+          title: 'Homesick for Another World',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/homesick_for_another_world/";
+            },},{id: "books-the-godfather",
           title: 'The Godfather',
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "books-the-stranger",
+          title: 'The Stranger',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/the_stranger/";
+            },},{id: "books-vermis-i-lost-dungeons-and-forbidden-woods",
+          title: 'Vermis I: Lost Dungeons and Forbidden Woods',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/vermis/";
             },},{id: "news-search-algorithm-simulations-talk-in-guadalajara-mexico",
           title: 'Search algorithm simulations talk in Guadalajara, Mexico',
           description: "",
@@ -63,16 +88,41 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-01-02_new_site/";
-            },},{id: "projects-test-project",
-          title: 'test project',
-          description: "with background image",
+            },},{id: "projects-agentic-engineering",
+          title: 'Agentic Engineering',
+          description: "Agents and skills for agentic engineering workflows.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
+              window.location.href = "/projects/agentic_engineering/";
+            },},{id: "projects-bayesian-optimization-with-bass",
+          title: 'Bayesian Optimization with BASS',
+          description: "My MSc thesis — Bayesian Adaptive Spline Surfaces as a surrogate model for Bayesian optimization.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/bayesian_optim_bass/";
             },},{id: "projects-gospeedtests",
           title: 'GoSpeedTests',
           description: "A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/gospeedtests/";
+            },},{id: "projects-mollify",
+          title: 'Mollify',
+          description: "A Rust-native static analysis engine that delivers deterministic codebase intelligence for Python.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/mollify/";
+            },},{id: "projects-rust-learning",
+          title: 'Rust Learning',
+          description: "Notes and code as I learn Rust.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/rust_learning/";
+            },},{id: "projects-template-ai-engineering",
+          title: 'template-ai-engineering',
+          description: "A template for bootstrapping the AI agent journey — skills, agents, and connections that project into any harness.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/template_ai_engineering/";
+            },},{id: "projects-trading-strategies",
+          title: 'Trading Strategies',
+          description: "A site to track how trading strategies perform over time.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/trading_strategies/";
             },},{
         id: 'social-email',
         title: 'email',
