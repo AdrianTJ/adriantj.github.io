@@ -2,7 +2,7 @@
 layout: page
 title: GoSpeedTests
 description: A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.
-img: assets/img/7.jpg
+img: assets/img/project_previews/gospeedtests.png
 importance: 5
 category: work
 github: https://github.com/AdrianTJ/GoSpeedTests

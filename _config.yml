@@ -84,7 +84,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: the paperclip manifesto # blog_name will be displayed in your blog page
-blog_description: site under construction! # could add description here
+blog_description: notes on data science, tooling, and building with (and for) machines # could add description here
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
