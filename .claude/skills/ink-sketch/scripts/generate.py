@@ -12,9 +12,17 @@ Usage
   python generate.py "an old gramophone" -o gramophone.png
   python generate.py "a cat asleep on a windowsill" -o cat.png --aspect 1:1
   python generate.py "a bicycle" --n 3 -o bike.png        # bike_1.png, bike_2.png...
-  python generate.py "a lighthouse" --no-ref              # ignore the style image
+  python generate.py "a lighthouse" --no-ref              # ignore the style refs
+  python generate.py "a fox" --ref my.png --ref my2.png   # your own style refs
+  python generate.py "a fox" --ref-dir ./more_examples    # a whole folder of refs
   python generate.py --raw "literal prompt, no style wrapper" -o x.png
   python generate.py --list-models                        # discover image models
+
+Style references
+----------------
+By default every image in assets/references/ is sent as a style anchor (falling
+back to assets/style-reference.png). Add more examples of the look to that folder
+to strengthen it, or point at your own with --ref / --ref-dir.
 
 Model
 -----
@@ -41,20 +49,46 @@ API_BASE = os.environ.get(
 DEFAULT_MODEL = os.environ.get("GEMINI_IMAGE_MODEL", "gemini-2.5-flash-image")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_REF = os.path.normpath(os.path.join(HERE, "..", "assets", "style-reference.png"))
+ASSETS = os.path.normpath(os.path.join(HERE, "..", "assets"))
+DEFAULT_REF_DIR = os.path.join(ASSETS, "references")  # folder of style tiles
+DEFAULT_REF_SHEET = os.path.join(ASSETS, "style-reference.png")  # fallback single sheet
+IMG_EXTS = (".png", ".jpg", ".jpeg", ".webp")
 
 # The style contract. Keep this tight — it is what makes every output feel like
-# the same hand. Edit here to tune the house style.
+# the same hand. Edit here to tune the house style. The vocabulary ("loose line",
+# "gestural", "brush-pen") is what search engines and models associate with this
+# editorial spot-illustration look.
 STYLE = (
-    "A loose, hand-drawn black-ink brush-pen sketch. Single confident contour "
-    "lines with a natural, slightly wobbly hand-drawn quality and rounded ends; "
-    "varied line weight from thick brush strokes to thin details; a few gestural "
-    "scribbles suggest texture (foliage, patterns, shading) rather than any solid "
-    "fill. Pure black ink on a plain off-white paper background. Monochrome only: "
-    "no color, no grey wash, no gradients, no photorealism. A single subject drawn "
-    "as an isolated spot illustration, centered, surrounded by generous empty "
-    "space, minimal and elegant, like a quick sketchbook doodle. Subject: "
+    "A loose, gestural black-ink brush-pen line drawing in the 'loose line' "
+    "editorial spot-illustration style. Confident single-stroke contours with a "
+    "natural hand-drawn wobble and rounded ends; line weight varies from thick "
+    "brush marks to thin details; a few economical scribbles imply texture "
+    "(foliage, pattern, light shading) with no solid fills. Pure black ink on "
+    "plain off-white paper. Strictly monochrome: no color, no grey wash, no "
+    "gradients, no photorealism, no lettering. One subject as an isolated spot "
+    "illustration, centered with generous negative space, minimal and elegant "
+    "like a quick sketchbook doodle. Subject: "
 )
+
+
+def resolve_refs(args):
+    """Return the list of style-reference image paths to send."""
+    if args.no_ref:
+        return []
+    if args.ref:  # explicit --ref (repeatable) wins
+        return args.ref
+    src_dir = args.ref_dir or (DEFAULT_REF_DIR if os.path.isdir(DEFAULT_REF_DIR) else None)
+    if src_dir:
+        imgs = sorted(
+            os.path.join(src_dir, f)
+            for f in os.listdir(src_dir)
+            if f.lower().endswith(IMG_EXTS)
+        )
+        if imgs:
+            return imgs[: args.max_refs]
+    if os.path.exists(DEFAULT_REF_SHEET):
+        return [DEFAULT_REF_SHEET]
+    return []
 
 
 def api_key():
@@ -119,8 +153,10 @@ def main():
     ap.add_argument("--model", default=DEFAULT_MODEL, help=f"image model (default {DEFAULT_MODEL})")
     ap.add_argument("--n", type=int, default=1, help="how many images to request")
     ap.add_argument("--aspect", help="aspect ratio hint, e.g. 1:1, 16:9, 3:2")
-    ap.add_argument("--ref", default=DEFAULT_REF, help="style reference image (default: bundled sheet)")
-    ap.add_argument("--no-ref", action="store_true", help="do not send a style reference image")
+    ap.add_argument("--ref", action="append", help="style reference image (repeatable); overrides the defaults")
+    ap.add_argument("--ref-dir", help="use every image in this folder as a style reference")
+    ap.add_argument("--max-refs", type=int, default=6, help="cap on how many references to send (default 6)")
+    ap.add_argument("--no-ref", action="store_true", help="do not send any style reference image")
     ap.add_argument("--raw", action="store_true", help="use subject verbatim; skip the style wrapper")
     ap.add_argument("--list-models", action="store_true", help="list models on your key and exit")
     args = ap.parse_args()
@@ -136,16 +172,19 @@ def main():
     if args.aspect:
         prompt += f"  Aspect ratio {args.aspect}."
 
-    parts = [{"text": prompt}]
-    if not args.no_ref:
-        if os.path.exists(args.ref):
-            # Reference first, then the instruction to imitate it.
-            parts = [
-                image_part(args.ref),
-                {"text": "Draw the subject in exactly the visual style of the reference image above. " + prompt},
-            ]
-        else:
-            print(f"warning: style reference not found at {args.ref}; continuing without it", file=sys.stderr)
+    refs = [r for r in resolve_refs(args) if os.path.exists(r)]
+    if refs:
+        # References first, then the instruction to imitate them.
+        n = "these reference images" if len(refs) > 1 else "the reference image above"
+        parts = [image_part(r) for r in refs]
+        parts.append(
+            {"text": f"Draw the subject in exactly the visual style of {n}. " + prompt}
+        )
+        print(f"using {len(refs)} style reference(s)", file=sys.stderr)
+    else:
+        parts = [{"text": prompt}]
+        if not args.no_ref:
+            print("warning: no style reference found; continuing on the text prompt alone", file=sys.stderr)
 
     gen_cfg = {"responseModalities": ["IMAGE"]}
     if args.n > 1:

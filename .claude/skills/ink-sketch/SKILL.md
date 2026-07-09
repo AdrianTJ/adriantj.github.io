@@ -20,8 +20,17 @@ space. Generation is done by an image model (Gemini flash image), not by drawing
 vectors — you describe the subject in plain words and the model renders it.
 
 `scripts/generate.py` wraps your subject in a fixed style prompt **and** sends
-`assets/style-reference.png` (a sheet of examples in this exact style) as a
-visual anchor, so every result comes back on-style.
+a set of style-reference images as visual anchors, so every result comes back
+on-style.
+
+## What this style is called
+
+There is no single canonical name. It is best described as **loose / gestural
+line illustration** in **black brush-pen ink** — an editorial / sketchbook
+"spot illustration" look (related terms: *loose style illustration*, *gesture
+drawing*, *brush-pen ink sketch*, *minimal line art*). Those phrases are the
+vocabulary that retrieves and reproduces it, and they are baked into the
+prompt in `generate.py`.
 
 ## Setup
 
@@ -63,16 +72,32 @@ export GEMINI_IMAGE_MODEL=gemini-3-pro-image-preview   # or set a default
 If a model id 404s, run `--list-models` and pick one that your key supports
 (image models are marked with `*`).
 
+## Style references (add more to improve results)
+
+Every image in **`assets/references/`** is sent to the model as a style anchor
+(falling back to `assets/style-reference.png` if the folder is empty). It ships
+with six isolated examples cut from the original reference sheet (a woman
+sipping, a bistro table, a TV, flowers, a set table, a gramophone).
+
+**More, varied examples of the same look make the style more robust.** To add
+them, drop image files into `assets/references/` (or point at your own set with
+`--ref file.png` repeatable, or `--ref-dir folder/`). Good sources to collect
+from: search *"loose line illustration"*, *"brush pen ink sketch"*, *"gesture
+line drawing"*, or an illustrator whose spot work you like; isolated
+single-subject drawings on white work best. Keep the set stylistically
+consistent — one clean look beats a noisy mix.
+
+> Note: this repo's sandbox blocks outbound image sites, so I can't fetch new
+> examples from here; the script running in your own environment can use any you
+> add. Send me images and I'll wire them in, or just drop them in the folder.
+
 ## Tuning the style
 
-- The house style lives in the `STYLE` string near the top of
+- The house style prompt lives in the `STYLE` string near the top of
   `scripts/generate.py`. Edit it to shift the aesthetic (line weight, amount of
   scribble/texture, paper tone, composition).
-- The style anchor is `assets/style-reference.png`. Swap it with `--ref
-  other.png`, or drop it entirely with `--no-ref` if you want the text prompt
-  alone to drive the look.
 - Keep subjects to a **single object or simple scene** for the cleanest,
-  most on-style spot illustrations, matching the reference sheet.
+  most on-style spot illustrations.
 
 ## Flags
 
@@ -83,7 +108,8 @@ If a model id 404s, run `--list-models` and pick one that your key supports
 | `--model` | image model id (or set `GEMINI_IMAGE_MODEL`) |
 | `--n` | request more than one image |
 | `--aspect` | aspect ratio hint, e.g. `1:1`, `16:9`, `3:2` |
-| `--ref PATH` / `--no-ref` | override / disable the style-reference image |
+| `--ref PATH` (repeatable) / `--ref-dir DIR` | use your own style reference(s) |
+| `--no-ref` / `--max-refs N` | disable references / cap how many are sent (default 6) |
 | `--raw` | use the subject text verbatim (no style wrapper) |
 | `--list-models` | list image-capable models on your key |
 
