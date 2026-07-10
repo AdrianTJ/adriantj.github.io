@@ -17,6 +17,19 @@
 
   <!-- Body -->
   <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
+    <!-- Watercolor ruin backdrop (decorative, page-specific) -->
+    {% assign wc_ruin = 'home' %}
+    {% if page.url contains '/blog' %}
+      {% assign wc_ruin = 'blog' %}
+    {% elsif page.url contains '/projects' %}
+      {% assign wc_ruin = 'projects' %}
+    {% elsif page.url contains '/academic' %}
+      {% assign wc_ruin = 'academic' %}
+    {% elsif page.url contains '/books' %}
+      {% assign wc_ruin = 'books' %}
+    {% endif %}
+    <div class="wc-ruin wc-ruin--{{ wc_ruin }}" aria-hidden="true"></div>
+
     <!-- Header -->
     {% include header.liquid %}
 

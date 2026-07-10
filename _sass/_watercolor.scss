@@ -220,6 +220,62 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
+ * Ruin backdrop — page-specific classical ruins collaged on the paper,
+ * procedurally generated (SVG stone lighting), sitting between the wash and
+ * the grain so the paper texture prints over the stone.
+ * ------------------------------------------------------------------------ */
+
+.wc-ruin {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: right -7vw bottom -2vh;
+  background-size: min(52vw, 800px) auto;
+  opacity: 0.45;
+}
+
+.wc-ruin--home {
+  background-image: url("../img/ruins/home.png");
+}
+
+.wc-ruin--blog {
+  background-image: url("../img/ruins/blog.png");
+}
+
+.wc-ruin--projects {
+  background-image: url("../img/ruins/projects.png");
+  background-position: center bottom -2vh;
+  background-size: min(72vw, 1050px) auto;
+}
+
+.wc-ruin--academic {
+  background-image: url("../img/ruins/academic.png");
+}
+
+.wc-ruin--books {
+  background-image: url("../img/ruins/books.png");
+}
+
+html[data-theme="dark"] .wc-ruin {
+  opacity: 0.14;
+}
+
+@media (max-width: 768px) {
+  .wc-ruin {
+    background-size: 88vw auto;
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .wc-ruin {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
  * Typography
  * ------------------------------------------------------------------------ */
 
