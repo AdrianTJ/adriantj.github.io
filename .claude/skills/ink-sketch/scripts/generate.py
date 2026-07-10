@@ -155,7 +155,7 @@ def main():
     ap.add_argument("--aspect", help="aspect ratio hint, e.g. 1:1, 16:9, 3:2")
     ap.add_argument("--ref", action="append", help="style reference image (repeatable); overrides the defaults")
     ap.add_argument("--ref-dir", help="use every image in this folder as a style reference")
-    ap.add_argument("--max-refs", type=int, default=6, help="cap on how many references to send (default 6)")
+    ap.add_argument("--max-refs", type=int, default=12, help="cap on how many references to send (default 12)")
     ap.add_argument("--no-ref", action="store_true", help="do not send any style reference image")
     ap.add_argument("--raw", action="store_true", help="use subject verbatim; skip the style wrapper")
     ap.add_argument("--list-models", action="store_true", help="list models on your key and exit")
