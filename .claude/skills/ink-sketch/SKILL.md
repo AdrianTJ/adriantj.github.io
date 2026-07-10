@@ -76,8 +76,13 @@ If a model id 404s, run `--list-models` and pick one that your key supports
 
 Every image in **`assets/references/`** is sent to the model as a style anchor
 (falling back to `assets/style-reference.png` if the folder is empty). It ships
-with six isolated examples cut from the original reference sheet (a woman
-sipping, a bistro table, a TV, flowers, a set table, a gramophone).
+with eleven examples: six isolated subjects cut from the original reference
+sheet (a woman sipping, a bistro table, a TV, flowers, a set table, a
+gramophone) plus five richer pieces (a plant-covered doorway, a candle/flowers/
+wine still life, a dinner-table scene, a gallery wall of framed doodles, and a
+sheet of small character icons). Some sit on cream or gray paper — that is
+fine; they anchor the *line* style, and the prompt pins the output paper to
+off-white.
 
 **More, varied examples of the same look make the style more robust.** To add
 them, drop image files into `assets/references/` (or point at your own set with
@@ -109,7 +114,7 @@ consistent — one clean look beats a noisy mix.
 | `--n` | request more than one image |
 | `--aspect` | aspect ratio hint, e.g. `1:1`, `16:9`, `3:2` |
 | `--ref PATH` (repeatable) / `--ref-dir DIR` | use your own style reference(s) |
-| `--no-ref` / `--max-refs N` | disable references / cap how many are sent (default 6) |
+| `--no-ref` / `--max-refs N` | disable references / cap how many are sent (default 12) |
 | `--raw` | use the subject text verbatim (no style wrapper) |
 | `--list-models` | list image-capable models on your key |
 
