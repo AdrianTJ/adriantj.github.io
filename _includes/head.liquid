@@ -24,11 +24,20 @@
 <!-- Fonts & Icons -->
 <link defer rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url | bust_file_cache }}">
 <link defer rel="stylesheet" href="{{ '/assets/css/scholar-icons.css' | relative_url | bust_file_cache }}">
+<!-- Watercolor fonts (Fraunces, Inter, IBM Plex Mono) are self-hosted via @font-face in main.css -->
 <link
-  defer
-  rel="stylesheet"
-  type="text/css"
-  href="{{ site.third_party_libraries.google_fonts.url.fonts }}"
+  rel="preload"
+  href="{{ '/assets/fonts/watercolor/fraunces-latin-wght-normal.woff2' | relative_url }}"
+  as="font"
+  type="font/woff2"
+  crossorigin
+>
+<link
+  rel="preload"
+  href="{{ '/assets/fonts/watercolor/inter-latin-wght-normal.woff2' | relative_url }}"
+  as="font"
+  type="font/woff2"
+  crossorigin
 >
 
 <!-- Code Syntax Highlighting -->
