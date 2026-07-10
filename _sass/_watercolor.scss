@@ -231,9 +231,12 @@ html[data-theme="dark"] body::after {
   z-index: -1;
   pointer-events: none;
   background-repeat: no-repeat;
-  background-position: right -7vw bottom -2vh;
-  background-size: min(52vw, 800px) auto;
-  opacity: 0.45;
+  background-position: right -5vw bottom -12vh;
+  background-size: min(42vw, 640px) auto;
+  /* collage print: the image multiplies onto the paper + wash, so photos on a
+     light background need no cutout and sit ON the watercolor, not under it */
+  mix-blend-mode: multiply;
+  opacity: 0.92;
 }
 
 .wc-ruin--home {
@@ -259,7 +262,10 @@ html[data-theme="dark"] body::after {
 }
 
 html[data-theme="dark"] .wc-ruin {
-  opacity: 0.14;
+  /* dusk: flip the print to a pale etching and lay it with screen blending */
+  mix-blend-mode: screen;
+  filter: invert(0.92) sepia(0.14);
+  opacity: 0.3;
 }
 
 @media (max-width: 768px) {
