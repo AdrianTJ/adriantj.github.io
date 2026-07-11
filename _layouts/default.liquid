@@ -17,8 +17,13 @@
 
   <!-- Body -->
   <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
-    <!-- Ruin frame (decorative) -->
-    <div class="wc-ruin" aria-hidden="true"></div>
+    <!-- Ruin frame (decorative): coin-flip between the two pillar variants per load -->
+    <div class="wc-ruin" id="wc-ruin" aria-hidden="true"></div>
+    <script>
+      if (Math.random() < 0.5) {
+        document.getElementById('wc-ruin').dataset.pillar = 'b';
+      }
+    </script>
 
     <!-- Header -->
     {% include header.liquid %}

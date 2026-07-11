@@ -220,13 +220,13 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
- * Ruin frame — two ruined Corinthian pillars (real illustration, cut out from
- * its background but otherwise opaque: solid white marble in light mode, a
- * solid near-black version in dark mode). Pinned to the viewport edges so the
- * content is framed between them, full height. Width is capped at the margin
- * beside the 960px content column, so the pillars can never overlap content;
- * below 1500px, where a full-height pillar cannot fit that margin, the frame
- * hides instead of shrinking.
+ * Ruin frame — one ruined Corinthian pillar (real illustration, cut out but
+ * fully opaque: white marble in light mode, near-black in dark) drawn on both
+ * sides of the viewport, the right side mirrored, so the frame is symmetric
+ * by construction. A tiny inline script in default.liquid flips a coin per
+ * page load between the two pillar variants (data-pillar="b"). Width is
+ * capped at the margin beside the 960px content column so the pillars can
+ * never overlap content; below 1500px the frame hides instead of shrinking.
  * ------------------------------------------------------------------------ */
 
 .wc-ruin {
@@ -234,18 +234,41 @@ html[data-theme="dark"] body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: url("../img/ruins/frame-left.png"), url("../img/ruins/frame-right.png");
-  background-repeat: no-repeat;
-  background-position:
-    left bottom -2vh,
-    right bottom -2vh;
-  background-size:
-    min(calc((100vw - 1040px) / 2), 32vh) auto,
-    min(calc((100vw - 1040px) / 2), 32vh) auto;
+  --wc-pillar: url("../img/ruins/pillar-a.webp");
+}
+
+.wc-ruin[data-pillar="b"] {
+  --wc-pillar: url("../img/ruins/pillar-b.webp");
 }
 
 html[data-theme="dark"] .wc-ruin {
-  background-image: url("../img/ruins/frame-left-dark.png"), url("../img/ruins/frame-right-dark.png");
+  --wc-pillar: url("../img/ruins/pillar-a-dark.webp");
+}
+
+html[data-theme="dark"] .wc-ruin[data-pillar="b"] {
+  --wc-pillar: url("../img/ruins/pillar-b-dark.webp");
+}
+
+.wc-ruin::before,
+.wc-ruin::after {
+  content: "";
+  position: absolute;
+  top: 2vh;
+  bottom: -2vh;
+  width: min(calc((100vw - 1040px) / 2), 34vh);
+  background-image: var(--wc-pillar);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+}
+
+.wc-ruin::before {
+  left: 0;
+}
+
+.wc-ruin::after {
+  right: 0;
+  transform: scaleX(-1);
 }
 
 @media (max-width: 1500px) {
