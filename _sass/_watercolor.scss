@@ -220,6 +220,70 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
+ * Ruin frame — one ruined Corinthian pillar (real illustration, cut out but
+ * fully opaque: white marble in light mode, near-black in dark) drawn on both
+ * sides of the viewport, the right side mirrored, so the frame is symmetric
+ * by construction. A tiny inline script in default.liquid flips a coin per
+ * page load between the two pillar variants (data-pillar="b"). Width is
+ * capped at the margin beside the 960px content column so the pillars can
+ * never overlap content; below 1500px the frame hides instead of shrinking.
+ * ------------------------------------------------------------------------ */
+
+.wc-ruin {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  --wc-pillar: url("../img/ruins/pillar-a.webp");
+}
+
+.wc-ruin[data-pillar="b"] {
+  --wc-pillar: url("../img/ruins/pillar-b.webp");
+}
+
+html[data-theme="dark"] .wc-ruin {
+  --wc-pillar: url("../img/ruins/pillar-a-dark.webp");
+}
+
+html[data-theme="dark"] .wc-ruin[data-pillar="b"] {
+  --wc-pillar: url("../img/ruins/pillar-b-dark.webp");
+}
+
+.wc-ruin::before,
+.wc-ruin::after {
+  content: "";
+  position: absolute;
+  top: 2vh;
+  bottom: -2vh;
+  width: min(calc((100vw - 1040px) / 2), 34vh);
+  background-image: var(--wc-pillar);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+}
+
+.wc-ruin::before {
+  left: 0;
+}
+
+.wc-ruin::after {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+@media (max-width: 1500px) {
+  .wc-ruin {
+    display: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .wc-ruin {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
  * Typography
  * ------------------------------------------------------------------------ */
 
