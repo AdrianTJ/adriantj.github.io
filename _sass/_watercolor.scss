@@ -220,11 +220,13 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
- * Ruin frame — two ruined Corinthian pillars (real illustration, alpha-keyed)
- * pinned to the viewport edges so the content is framed between them. Each
- * pillar is sized min((100vw - 1040px) / 2, 32vh): never wider than the
- * margin beside the 960px content column (no overlap, guaranteed), and never
- * taller than the viewport (aspect ~0.35). Multiply-blended onto the paper.
+ * Ruin frame — two ruined Corinthian pillars (real illustration, cut out from
+ * its background but otherwise opaque: solid white marble in light mode, a
+ * solid near-black version in dark mode). Pinned to the viewport edges so the
+ * content is framed between them, full height. Width is capped at the margin
+ * beside the 960px content column, so the pillars can never overlap content;
+ * below 1500px, where a full-height pillar cannot fit that margin, the frame
+ * hides instead of shrinking.
  * ------------------------------------------------------------------------ */
 
 .wc-ruin {
@@ -240,18 +242,13 @@ html[data-theme="dark"] body::after {
   background-size:
     min(calc((100vw - 1040px) / 2), 32vh) auto,
     min(calc((100vw - 1040px) / 2), 32vh) auto;
-  mix-blend-mode: multiply;
-  opacity: 0.9;
 }
 
 html[data-theme="dark"] .wc-ruin {
-  /* dusk: flip the ink to a pale etching laid with screen blending */
-  mix-blend-mode: screen;
-  filter: invert(0.9) sepia(0.12);
-  opacity: 0.35;
+  background-image: url("../img/ruins/frame-left-dark.png"), url("../img/ruins/frame-right-dark.png");
 }
 
-@media (max-width: 1220px) {
+@media (max-width: 1500px) {
   .wc-ruin {
     display: none;
   }
