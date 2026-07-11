@@ -234,6 +234,10 @@ html[data-theme="dark"] body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  /* print the pillars INTO the watercolor: the whole layer multiplies onto
+     the paper and wash, so the wash tone washes over the marble uniformly */
+  mix-blend-mode: multiply;
+  opacity: 0.9;
   --wc-pillar: url("../img/ruins/pillar-a.webp");
 }
 
@@ -242,6 +246,9 @@ html[data-theme="dark"] body::after {
 }
 
 html[data-theme="dark"] .wc-ruin {
+  /* dusk: pale linework laid with screen blending, an etching in the dark */
+  mix-blend-mode: screen;
+  opacity: 0.45;
   --wc-pillar: url("../img/ruins/pillar-a-dark.webp");
 }
 
