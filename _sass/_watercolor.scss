@@ -220,9 +220,9 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
- * Ruin backdrop — page-specific classical ruins collaged on the paper,
- * procedurally generated (SVG stone lighting), sitting between the wash and
- * the grain so the paper texture prints over the stone.
+ * Ruin frame — a real illustration of two Corinthian columns (alpha-keyed,
+ * split in half) pinned to the viewport edges so the content flows between
+ * them, framed. Multiply-blended so it prints onto the paper and wash.
  * ------------------------------------------------------------------------ */
 
 .wc-ruin {
@@ -230,48 +230,40 @@ html[data-theme="dark"] body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  background-image: url("../img/ruins/frame-left.png"), url("../img/ruins/frame-right.png");
   background-repeat: no-repeat;
-  background-position: right -5vw bottom -12vh;
-  background-size: min(42vw, 640px) auto;
-  /* collage print: the image multiplies onto the paper + wash, so photos on a
-     light background need no cutout and sit ON the watercolor, not under it */
+  background-position:
+    left -2vw bottom -2vh,
+    right -2vw bottom -2vh;
+  background-size:
+    auto 92vh,
+    auto 92vh;
   mix-blend-mode: multiply;
-  opacity: 0.92;
-}
-
-.wc-ruin--home {
-  background-image: url("../img/ruins/home.png");
-}
-
-.wc-ruin--blog {
-  background-image: url("../img/ruins/blog.png");
-}
-
-.wc-ruin--projects {
-  background-image: url("../img/ruins/projects.png");
-  background-position: center bottom -2vh;
-  background-size: min(72vw, 1050px) auto;
-}
-
-.wc-ruin--academic {
-  background-image: url("../img/ruins/academic.png");
-}
-
-.wc-ruin--books {
-  background-image: url("../img/ruins/books.png");
+  opacity: 0.9;
 }
 
 html[data-theme="dark"] .wc-ruin {
-  /* dusk: flip the print to a pale etching and lay it with screen blending */
+  /* dusk: flip the ink to a pale etching laid with screen blending */
   mix-blend-mode: screen;
-  filter: invert(0.92) sepia(0.14);
-  opacity: 0.3;
+  filter: invert(0.9) sepia(0.12);
+  opacity: 0.35;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1500px) {
   .wc-ruin {
-    background-size: 88vw auto;
-    opacity: 0.35;
+    background-size:
+      auto 60vh,
+      auto 60vh;
+    background-position:
+      left -3vw bottom -2vh,
+      right -3vw bottom -2vh;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 1100px) {
+  .wc-ruin {
+    display: none;
   }
 }
 
