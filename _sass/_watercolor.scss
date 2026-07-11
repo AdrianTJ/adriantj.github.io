@@ -220,9 +220,11 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
- * Ruin frame — a real illustration of two Corinthian columns (alpha-keyed,
- * split in half) pinned to the viewport edges so the content flows between
- * them, framed. Multiply-blended so it prints onto the paper and wash.
+ * Ruin frame — two ruined Corinthian pillars (real illustration, alpha-keyed)
+ * pinned to the viewport edges so the content is framed between them. Each
+ * pillar is sized min((100vw - 1040px) / 2, 32vh): never wider than the
+ * margin beside the 960px content column (no overlap, guaranteed), and never
+ * taller than the viewport (aspect ~0.35). Multiply-blended onto the paper.
  * ------------------------------------------------------------------------ */
 
 .wc-ruin {
@@ -233,11 +235,11 @@ html[data-theme="dark"] body::after {
   background-image: url("../img/ruins/frame-left.png"), url("../img/ruins/frame-right.png");
   background-repeat: no-repeat;
   background-position:
-    left -2vw bottom -2vh,
-    right -2vw bottom -2vh;
+    left bottom -2vh,
+    right bottom -2vh;
   background-size:
-    auto 92vh,
-    auto 92vh;
+    min(calc((100vw - 1040px) / 2), 32vh) auto,
+    min(calc((100vw - 1040px) / 2), 32vh) auto;
   mix-blend-mode: multiply;
   opacity: 0.9;
 }
@@ -249,19 +251,7 @@ html[data-theme="dark"] .wc-ruin {
   opacity: 0.35;
 }
 
-@media (max-width: 1500px) {
-  .wc-ruin {
-    background-size:
-      auto 60vh,
-      auto 60vh;
-    background-position:
-      left -3vw bottom -2vh,
-      right -3vw bottom -2vh;
-    opacity: 0.7;
-  }
-}
-
-@media (max-width: 1100px) {
+@media (max-width: 1220px) {
   .wc-ruin {
     display: none;
   }
