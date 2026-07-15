@@ -278,7 +278,26 @@ html[data-theme="dark"] .wc-ruin[data-pillar="b"] {
   transform: scaleX(-1);
 }
 
+/* laptop widths: not enough margin for the whole pillar, so keep it full
+   height and let its outer (cracked) side crop off the viewport edge — the
+   column shaft still frames the page, and still never touches content */
 @media (max-width: 1500px) {
+  .wc-ruin::before,
+  .wc-ruin::after {
+    width: calc((100vw - 1064px) / 2);
+    background-size: auto 94vh;
+  }
+
+  .wc-ruin::before {
+    background-position: right bottom -2vh;
+  }
+
+  .wc-ruin::after {
+    background-position: right bottom -2vh;
+  }
+}
+
+@media (max-width: 1160px) {
   .wc-ruin {
     display: none;
   }
