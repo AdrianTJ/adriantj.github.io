@@ -1,5 +1,5 @@
-<!-- published: false # placeholder from the theme; flip to true when there is real content
----
+## <!-- published: false # placeholder from the theme; flip to true when there is real content
+
 layout: profiles
 permalink: /people/
 title: people
