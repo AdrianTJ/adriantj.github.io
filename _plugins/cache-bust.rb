@@ -21,7 +21,12 @@ module Jekyll
 
       def directory_files_content
         target_path = File.join(directory, '**', '*')
-        Dir[target_path].map{|f| File.read(f) unless File.directory?(f) }.join
+        content = Dir[target_path].sort.map{|f| File.read(f) unless File.directory?(f) }.join
+        # include the entry stylesheet itself (e.g. main.scss for main.css), so
+        # edits to the import list or inline front matter also bust the cache
+        source = file_name.slice(file_name.index('assets/')..-1).sub(/\.css\z/, '.scss')
+        content += File.read(source) if File.exist?(source)
+        content
       end
 
       def file_content
@@ -43,7 +48,10 @@ module Jekyll
     end
 
     def bust_css_cache(file_name)
-      CacheDigester.new(file_name: file_name, directory: 'assets/_sass').digest!
+      # hash the actual sass inputs; the upstream default of 'assets/_sass'
+      # does not exist in this repo, which made the digest md5("") — a
+      # constant query param that never busted anything
+      CacheDigester.new(file_name: file_name, directory: '_sass').digest!
     end
   end
 end
