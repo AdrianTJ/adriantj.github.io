@@ -1,7 +1,7 @@
 ---
 layout: page
 title: pi
-description: An AI agent toolkit — unified LLM API, agent loop, TUI, and a coding-agent CLI.
+description: An AI agent toolkit: unified LLM API, agent loop, TUI, and a coding-agent CLI.
 img: assets/img/project_previews/pi.png
 importance: 1
 category: work

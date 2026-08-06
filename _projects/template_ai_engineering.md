@@ -1,7 +1,7 @@
 ---
 layout: page
 title: template-ai-engineering
-description: A template for bootstrapping the AI agent journey — skills, agents, and connections that project into any harness.
+description: A template for bootstrapping the AI agent journey: skills, agents, and connections that project into any harness.
 img: assets/img/project_previews/template_ai_engineering.png
 importance: 6
 category: work

@@ -8,4 +8,4 @@ released: 1942
 status: Finished
 ---
 
-Albert Camus's landmark novel of the absurd. Meursault, an emotionally detached French Algerian, drifts through his mother's funeral and, later, an inexplicable killing on a sun-blinded beach — and is condemned as much for his refusal to perform grief as for the crime itself. A spare, unsettling meditation on meaning, indifference, and the honesty of a man who will not pretend.
+Albert Camus's landmark novel of the absurd. Meursault, an emotionally detached French Algerian, drifts through his mother's funeral and, later, an inexplicable killing on a sun-blinded beach, and is condemned as much for his refusal to perform grief as for the crime itself. A spare, unsettling meditation on meaning, indifference, and the honesty of a man who will not pretend.
