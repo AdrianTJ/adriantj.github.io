@@ -3,7 +3,7 @@ layout: page
 title: Trading Strategies
 description: A site to track how trading strategies perform over time.
 img: assets/img/project_previews/trading_strategies.png
-importance: 6
+importance: 8
 category: work
 github: https://github.com/AdrianTJ/Trading_Strategies
 ---
