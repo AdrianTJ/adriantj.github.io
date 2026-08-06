@@ -4,11 +4,13 @@ github_users:
 repo_description_lines_max: 2
 
 github_repos:
+  - foothills-labs/labloop
+  - foothills-labs/regexbench
   - AdrianTJ/mollify
   - AdrianTJ/BayesianOptim_BASS
   - AdrianTJ/agentic_engineering
   - AdrianTJ/template-ai-engineering
-  - AdrianTJ/GoSpeedTests
+  - AdrianTJ/Loadstar
   - AdrianTJ/Trading_Strategies
   - AdrianTJ/Rust-Learning
   - AdrianTJ/Academic-Archive

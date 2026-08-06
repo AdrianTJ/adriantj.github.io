@@ -1,14 +1,14 @@
 ---
 layout: page
-title: GoSpeedTests
+title: Loadstar
 description: A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.
-img: assets/img/project_previews/gospeedtests.png
-importance: 5
+img: assets/img/project_previews/loadstar.png
+importance: 6
 category: work
-github: https://github.com/AdrianTJ/GoSpeedTests
+github: https://github.com/AdrianTJ/Loadstar
 ---
 
-**GoSpeedTests** is a high-performance, open-source page speed analysis toolkit written in Go. It is designed for developers and SREs to measure, track, and compare web performance metrics across any URL without vendor lock-in.
+**Loadstar** (formerly GoSpeedTests) is a high-performance, open-source page speed analysis toolkit written in Go. It is designed for developers and SREs to measure, track, and compare web performance metrics across any URL without vendor lock-in.
 
 ### Key Features
 
@@ -22,4 +22,4 @@ github: https://github.com/AdrianTJ/GoSpeedTests
   - **API Daemon (`gostd`)**: RESTful API for CI/CD integration.
 - **Production Ready**: Zero-config SQLite backend, SSRF protection, and Docker support.
 
-Check out the code on [GitHub](https://github.com/AdrianTJ/GoSpeedTests).
+Check out the code on [GitHub](https://github.com/AdrianTJ/Loadstar).

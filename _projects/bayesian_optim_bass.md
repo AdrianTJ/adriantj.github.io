@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Bayesian Optimization with BASS
-description: My MSc thesis — Bayesian Adaptive Spline Surfaces as a surrogate model for Bayesian optimization.
+description: My MSc thesis: Bayesian Adaptive Spline Surfaces as a surrogate model for Bayesian optimization.
 img: assets/img/project_previews/bayesian_optim_bass.png
 importance: 2
 category: work
