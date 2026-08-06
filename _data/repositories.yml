@@ -4,7 +4,6 @@ github_users:
 repo_description_lines_max: 2
 
 github_repos:
-  - AdrianTJ/pi
   - foothills-labs/labloop
   - foothills-labs/regexbench
   - AdrianTJ/mollify

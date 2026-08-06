@@ -3,7 +3,7 @@ layout: page
 title: Loadstar
 description: A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.
 img: assets/img/project_previews/loadstar.png
-importance: 7
+importance: 6
 category: work
 github: https://github.com/AdrianTJ/Loadstar
 ---
