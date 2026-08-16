@@ -100,6 +100,10 @@
   --wc-shadow-soft: 0 1px 2px rgba(35, 32, 88, 0.05), 0 6px 20px rgba(35, 32, 88, 0.07);
   --wc-shadow-float: 0 2px 6px rgba(35, 32, 88, 0.07), 0 16px 40px rgba(35, 32, 88, 0.1);
 
+  /* arch artwork, blue as the no-JS fallback; data-palette overrides below */
+  --wc-arch-desktop: url("../img/arch/arch-desktop-blue.webp");
+  --wc-arch-mobile: url("../img/arch/arch-mobile-blue.webp");
+
   --wc-font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
   --wc-font-body: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --wc-font-mono: "IBM Plex Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
@@ -179,6 +183,9 @@ html[data-theme="dark"] {
   --wc-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.35);
   --wc-shadow-float: 0 2px 6px rgba(0, 0, 0, 0.35), 0 16px 40px rgba(0, 0, 0, 0.45);
 
+  --wc-arch-desktop: url("../img/arch/arch-desktop-blue-dark.webp");
+  --wc-arch-mobile: url("../img/arch/arch-mobile-blue-dark.webp");
+
   --global-back-to-top-bg-color: rgba(251, 245, 234, 0.4);
   --global-back-to-top-text-color: var(--wc-bg);
 
@@ -256,92 +263,135 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
- * Ruin frame — one ruined Corinthian pillar (real illustration, cut out but
- * fully opaque: white marble in light mode, near-black in dark) drawn on both
- * sides of the viewport, the right side mirrored, so the frame is symmetric
- * by construction. A tiny inline script in default.liquid flips a coin per
- * page load between the two pillar variants (data-pillar="b"). Width is
- * capped at the margin beside the 960px content column so the pillars can
- * never overlap content; below 1500px the frame hides instead of shrinking.
+ * Arch frame — an engraved Toile de Jouy arch (uploaded illustration, opening
+ * cut transparent) laid OVER the page as a fixed window: content lives inside
+ * the archway and slides beneath the garlands as it scrolls. pointer-events
+ * pass through, so nothing under the art is unreachable. The ink hue rotates
+ * daily: a script in default.liquid stamps html[data-palette] from the UTC
+ * day number, and each palette block below swaps the artwork plus the accent
+ * tokens so links and buttons follow the day's ink. Blue is the no-JS
+ * fallback, wired into the base :root and dark blocks above.
  * ------------------------------------------------------------------------ */
 
-.wc-ruin {
+.wc-arch {
   position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  /* print the pillars INTO the watercolor: the whole layer multiplies onto
-     the paper and wash, so the wash tone washes over the marble uniformly */
-  mix-blend-mode: multiply;
-  opacity: 0.9;
-  --wc-pillar: url("../img/ruins/pillar-a.webp");
-}
-
-.wc-ruin[data-pillar="b"] {
-  --wc-pillar: url("../img/ruins/pillar-b.webp");
-}
-
-html[data-theme="dark"] .wc-ruin {
-  /* dusk: pale linework laid with screen blending, an etching in the dark */
-  mix-blend-mode: screen;
-  opacity: 0.45;
-  --wc-pillar: url("../img/ruins/pillar-a-dark.webp");
-}
-
-html[data-theme="dark"] .wc-ruin[data-pillar="b"] {
-  --wc-pillar: url("../img/ruins/pillar-b-dark.webp");
-}
-
-.wc-ruin::before,
-.wc-ruin::after {
-  content: "";
-  position: absolute;
-  top: 2vh;
-  bottom: -2vh;
-  width: min(calc((100vw - 1040px) / 2), 34vh);
-  background-image: var(--wc-pillar);
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  background-size: contain;
-}
-
-.wc-ruin::before {
-  left: 0;
-}
-
-.wc-ruin::after {
+  top: 84px; /* clears the floating navbar card (12px margin + bar) */
   right: 0;
-  transform: scaleX(-1);
+  bottom: 0;
+  left: 0;
+  z-index: 1020; /* over content, under the fixed navbar (1030) */
+  pointer-events: none;
+  background-image: var(--wc-arch-desktop);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
-/* laptop widths: not enough margin for the whole pillar, so keep it full
-   height and let its outer (cracked) side crop off the viewport edge — the
-   column shaft still frames the page, and still never touches content */
-@media (max-width: 1500px) {
-  .wc-ruin::before,
-  .wc-ruin::after {
-    width: calc((100vw - 1064px) / 2);
-    background-size: auto 94vh;
-  }
-
-  .wc-ruin::before {
-    background-position: right bottom -2vh;
-  }
-
-  .wc-ruin::after {
-    background-position: right bottom -2vh;
+@media (max-width: 900px) {
+  .wc-arch {
+    /* the tall frame, overscaled so the opening spans ~80vw and top-anchored
+       at natural aspect: the arch curve crowns the viewport, the columns run
+       down the edges, and the art's heavy lower florals stay below the fold */
+    background-image: var(--wc-arch-mobile);
+    background-size: 150% auto;
+    background-position: center top;
   }
 }
 
-@media (max-width: 1160px) {
-  .wc-ruin {
-    display: none;
+/* content narrows into the archway: below the curve's springline the opening
+   is ~62vw wide (desktop art), so 56vw keeps a margin from the columns */
+@media (min-width: 901px) {
+  .container[role="main"] {
+    max-width: min(56vw, 980px);
+    padding-top: calc(0.32 * (100vh - 84px));
   }
+}
+
+@media (max-width: 900px) {
+  .container[role="main"] {
+    max-width: 80vw;
+    /* springline of the top-anchored arch sits around 82vw down the page */
+    padding-top: max(72vw, 28vh);
+  }
+}
+
+/* the back-to-top button lives where the pedestal florals are drawn */
+#back_to_top {
+  z-index: 1025;
 }
 
 @media (prefers-contrast: more) {
-  .wc-ruin {
+  .wc-arch {
     display: none;
+  }
+
+  .container[role="main"] {
+    padding-top: 0;
+  }
+}
+
+@media print {
+  .wc-arch {
+    display: none;
+  }
+}
+
+/* the six inks: artwork + accent tokens per palette, light and dark */
+$wc-palettes: (
+  "blue": (
+    #4a44a8,
+    #322d8c,
+    #a9a3e8,
+    #cac5f4,
+  ),
+  "magenta": (
+    #a63a88,
+    #8c2470,
+    #e0a3cd,
+    #ecb9dc,
+  ),
+  "green": (
+    #2a7a52,
+    #175c3c,
+    #9ccbb0,
+    #b5dcc4,
+  ),
+  "orange": (
+    #bf5c16,
+    #a34a0e,
+    #e3b58c,
+    #eec9a8,
+  ),
+  "red": (
+    #a83232,
+    #8c1f1f,
+    #dfa199,
+    #eab3ab,
+  ),
+  "yellow": (
+    #a37a1a,
+    #8a6410,
+    #dcc78e,
+    #ead9a8,
+  ),
+);
+
+@each $name, $c in $wc-palettes {
+  html[data-palette="#{$name}"] {
+    --wc-accent: #{nth($c, 1)};
+    --wc-accent-ink: #{nth($c, 2)};
+    --wc-accent-bg: #{rgba(nth($c, 1), 0.08)};
+    --wc-accent-bd: #{rgba(nth($c, 1), 0.26)};
+    --wc-arch-desktop: url("../img/arch/arch-desktop-#{$name}.webp");
+    --wc-arch-mobile: url("../img/arch/arch-mobile-#{$name}.webp");
+  }
+
+  html[data-theme="dark"][data-palette="#{$name}"] {
+    --wc-accent: #{nth($c, 3)};
+    --wc-accent-ink: #{nth($c, 4)};
+    --wc-accent-bg: #{rgba(nth($c, 3), 0.14)};
+    --wc-accent-bd: #{rgba(nth($c, 3), 0.32)};
+    --wc-arch-desktop: url("../img/arch/arch-desktop-#{$name}-dark.webp");
+    --wc-arch-mobile: url("../img/arch/arch-mobile-#{$name}-dark.webp");
   }
 }
 

@@ -18,11 +18,14 @@
   <!-- Body -->
   <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
     <!-- Ruin frame (decorative): coin-flip between the two pillar variants per load -->
-    <div class="wc-ruin" id="wc-ruin" aria-hidden="true"></div>
+    <div class="wc-arch" aria-hidden="true"></div>
     <script>
-      if (Math.random() < 0.5) {
-        document.getElementById('wc-ruin').setAttribute('data-pillar', 'b');
-      }
+      (function () {
+        var palettes = ['blue', 'magenta', 'green', 'orange', 'red', 'yellow'];
+        var now = new Date();
+        var day = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+        document.documentElement.setAttribute('data-palette', palettes[day % palettes.length]);
+      })();
     </script>
 
     <!-- Header -->
