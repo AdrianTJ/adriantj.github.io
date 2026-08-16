@@ -67,25 +67,25 @@
 
 :root {
   /* surfaces */
-  --wc-bg: #f7f3ea;
-  --wc-surface: #fffdf8;
-  --wc-surface-2: #f4ecdf;
-  --wc-text: #2b2722;
-  --wc-heading: #221d18;
-  --wc-muted: #6b6055;
-  --wc-border: #ece2d2;
-  --wc-border-light: #ddd0bb;
+  --wc-bg: #f4eee1;
+  --wc-surface: #faf6eb;
+  --wc-surface-2: #ede5d2;
+  --wc-text: #2c2950;
+  --wc-heading: #232058;
+  --wc-muted: #6c6890;
+  --wc-border: #e0d7c2;
+  --wc-border-light: #d0c5ab;
 
   /* accents — ink tones tuned to WCAG AA on cream/ivory */
-  --wc-accent: #5b7fc0;
-  --wc-accent-ink: #3f5e96;
-  --wc-good: #466a40;
-  --wc-bad: #a94e44;
-  --wc-warn: #8c5f18;
+  --wc-accent: #4a44a8;
+  --wc-accent-ink: #322d8c;
+  --wc-good: #3f5e46;
+  --wc-bad: #9c4a4a;
+  --wc-warn: #85601f;
 
   /* tint recipe (badges, focus rings, block backgrounds) */
-  --wc-accent-bg: rgba(91, 127, 192, 0.1);
-  --wc-accent-bd: rgba(91, 127, 192, 0.28);
+  --wc-accent-bg: rgba(74, 68, 168, 0.08);
+  --wc-accent-bd: rgba(74, 68, 168, 0.26);
   --wc-good-bg: rgba(78, 122, 72, 0.1);
   --wc-good-bd: rgba(78, 122, 72, 0.28);
   --wc-bad-bg: rgba(184, 92, 82, 0.1);
@@ -93,23 +93,25 @@
   --wc-warn-bg: rgba(176, 125, 46, 0.12);
   --wc-warn-bd: rgba(176, 125, 46, 0.3);
 
-  --wc-radius-sm: 8px;
-  --wc-radius-btn: 999px;
-  --wc-radius-card: 20px;
+  --wc-radius-sm: 4px;
+  --wc-radius-btn: 6px;
+  --wc-radius-card: 10px;
 
-  --wc-shadow-soft: 0 1px 2px rgba(70, 50, 30, 0.04), 0 6px 20px rgba(70, 50, 30, 0.06);
-  --wc-shadow-float: 0 2px 6px rgba(70, 50, 30, 0.06), 0 16px 40px rgba(70, 50, 30, 0.08);
+  --wc-shadow-soft: 0 1px 2px rgba(35, 32, 88, 0.05), 0 6px 20px rgba(35, 32, 88, 0.07);
+  --wc-shadow-float: 0 2px 6px rgba(35, 32, 88, 0.07), 0 16px 40px rgba(35, 32, 88, 0.1);
 
   --wc-font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
   --wc-font-body: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --wc-font-mono: "IBM Plex Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
 
-  /* the pastel wash, one blob per corner plus a soft center bloom */
-  --wc-wash-1: radial-gradient(42% 36% at 14% 10%, rgba(244, 180, 170, 0.55), transparent 70%);
-  --wc-wash-2: radial-gradient(34% 30% at 86% 6%, rgba(247, 214, 150, 0.5), transparent 70%);
-  --wc-wash-3: radial-gradient(46% 42% at 92% 78%, rgba(168, 196, 180, 0.5), transparent 70%);
-  --wc-wash-4: radial-gradient(42% 40% at 6% 90%, rgba(186, 170, 214, 0.52), transparent 70%);
-  --wc-wash-5: radial-gradient(30% 28% at 52% 48%, rgba(156, 193, 216, 0.32), transparent 70%);
+  /* the plate impression: a whisper of cobalt pooling at the corners of the
+     sheet, in place of the old multicolor watercolor blobs. The flat cream
+     stays dominant so the engraved linework carries the page. */
+  --wc-wash-1: radial-gradient(46% 40% at 8% 6%, rgba(47, 42, 140, 0.05), transparent 70%);
+  --wc-wash-2: radial-gradient(40% 34% at 94% 4%, rgba(47, 42, 140, 0.045), transparent 70%);
+  --wc-wash-3: radial-gradient(46% 42% at 94% 94%, rgba(47, 42, 140, 0.05), transparent 70%);
+  --wc-wash-4: radial-gradient(44% 40% at 4% 94%, rgba(47, 42, 140, 0.045), transparent 70%);
+  --wc-wash-5: radial-gradient(60% 50% at 50% 50%, rgba(250, 246, 235, 0.5), transparent 75%);
 
   /* feed the theme: al-folio components read these */
   --global-bg-color: var(--wc-bg);
@@ -126,7 +128,7 @@
   --global-divider-color: var(--wc-border);
   --global-card-bg-color: var(--wc-surface);
   --global-highlight-color: var(--wc-bad);
-  --global-back-to-top-bg-color: rgba(34, 29, 24, 0.55);
+  --global-back-to-top-bg-color: rgba(35, 32, 88, 0.6);
   --global-back-to-top-text-color: var(--wc-surface);
   --global-newsletter-bg-color: var(--wc-surface);
   --global-newsletter-text-color: var(--wc-text);
@@ -150,17 +152,17 @@
  * ------------------------------------------------------------------------ */
 
 html[data-theme="dark"] {
-  --wc-bg: #1c1813;
-  --wc-surface: #262019;
-  --wc-surface-2: #2f2820;
-  --wc-text: #ece4d6;
-  --wc-heading: #fbf5ea;
-  --wc-muted: #a99e8d;
-  --wc-border: #3a3128;
-  --wc-border-light: #4a3f33;
+  --wc-bg: #16143a;
+  --wc-surface: #1e1b4a;
+  --wc-surface-2: #262260;
+  --wc-text: #e8e2d0;
+  --wc-heading: #f6f0de;
+  --wc-muted: #a7a2c8;
+  --wc-border: #2f2b6a;
+  --wc-border-light: #3c3784;
 
-  --wc-accent: #9db4e0;
-  --wc-accent-ink: #c3d2f0;
+  --wc-accent: #a9a3e8;
+  --wc-accent-ink: #cac5f4;
   --wc-good: #8fbe84;
   --wc-bad: #e09a90;
   --wc-warn: #e0b878;
@@ -179,6 +181,40 @@ html[data-theme="dark"] {
 
   --global-back-to-top-bg-color: rgba(251, 245, 234, 0.4);
   --global-back-to-top-text-color: var(--wc-bg);
+
+  /* re-assert the token mappings: al-folio's own html[data-theme="dark"]
+     block (in _themes.scss) hard-codes these globals, and :root loses to it
+     on specificity once the dark attribute is set. This file loads last, so
+     stating them again here keeps every component on the --wc-* palette. */
+  --global-bg-color: var(--wc-bg);
+  --global-code-bg-color: var(--wc-surface-2);
+  --global-text-color: var(--wc-text);
+  --global-text-color-light: var(--wc-muted);
+  --global-theme-color: var(--wc-accent-ink);
+  --global-hover-color: var(--wc-accent-ink);
+  --global-hover-text-color: var(--wc-surface);
+  --global-footer-bg-color: var(--wc-surface-2);
+  --global-footer-text-color: var(--wc-muted);
+  --global-footer-link-color: var(--wc-heading);
+  --global-distill-app-color: var(--wc-muted);
+  --global-divider-color: var(--wc-border);
+  --global-card-bg-color: var(--wc-surface);
+  --global-highlight-color: var(--wc-bad);
+  --global-newsletter-bg-color: var(--wc-surface);
+  --global-newsletter-text-color: var(--wc-text);
+
+  --global-tip-block: var(--wc-good);
+  --global-tip-block-bg: var(--wc-good-bg);
+  --global-tip-block-text: var(--wc-good);
+  --global-tip-block-title: var(--wc-good);
+  --global-warning-block: var(--wc-warn);
+  --global-warning-block-bg: var(--wc-warn-bg);
+  --global-warning-block-text: var(--wc-warn);
+  --global-warning-block-title: var(--wc-warn);
+  --global-danger-block: var(--wc-bad);
+  --global-danger-block-bg: var(--wc-bad-bg);
+  --global-danger-block-text: var(--wc-bad);
+  --global-danger-block-title: var(--wc-bad);
 }
 
 /* ---------------------------------------------------------------------------
