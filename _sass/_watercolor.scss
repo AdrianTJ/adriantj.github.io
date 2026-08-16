@@ -263,60 +263,74 @@ html[data-theme="dark"] body::after {
 }
 
 /* ---------------------------------------------------------------------------
- * Arch frame — an engraved Toile de Jouy arch (uploaded illustration, opening
- * cut transparent) laid OVER the page as a fixed window: content lives inside
- * the archway and slides beneath the garlands as it scrolls. pointer-events
- * pass through, so nothing under the art is unreachable. The ink hue rotates
- * daily: a script in default.liquid stamps html[data-palette] from the UTC
- * day number, and each palette block below swaps the artwork plus the accent
- * tokens so links and buttons follow the day's ink. Blue is the no-JS
- * fallback, wired into the base :root and dark blocks above.
+ * Arch frame — an engraved Toile de Jouy gateway (uploaded illustration, its
+ * archway cut transparent) standing at the head of every page. It scrolls
+ * WITH the document rather than being pinned to the viewport: a fixed frame
+ * necessarily occludes a long page, since anything taller than one screen
+ * eventually slides under the garlands. So the arch is an absolute band at
+ * the top, the page opens inside the archway, and the engraving is masked
+ * into a soft bottom fade so the columns dissolve into the paper instead of
+ * ending on a hard edge. Content that outruns the gateway simply continues
+ * below it on clean stock, never colliding with the art. The layer sits
+ * BEHIND the text (the opening is wider than the measure), so no line is
+ * ever clipped by a column.
+ *
+ * The ink hue rotates daily: a script in default.liquid stamps
+ * html[data-palette] from the UTC day number, and each palette block below
+ * swaps the artwork plus the accent tokens so links and buttons follow the
+ * day's ink. Blue is the no-JS fallback, wired into :root and the dark block.
  * ------------------------------------------------------------------------ */
 
 .wc-arch {
-  position: fixed;
-  top: 84px; /* clears the floating navbar card (12px margin + bar) */
+  position: absolute;
+  top: 80px; /* clears the floating navbar card */
   right: 0;
-  bottom: 0;
   left: 0;
-  z-index: 1020; /* over content, under the fixed navbar (1030) */
+  z-index: 0;
   pointer-events: none;
+  /* the desktop plate is 1672x941, so its natural height is 56.3vw */
+  height: min(56.3vw, 104vh);
   background-image: var(--wc-arch-desktop);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
+  background-position: top center;
+  /* dissolve the shafts into the paper before the pedestals would reach the
+     text column; also hides the crop when the height cap bites */
+  -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 97%);
+  mask-image: linear-gradient(to bottom, #000 68%, transparent 97%);
 }
 
 @media (max-width: 900px) {
   .wc-arch {
-    /* the tall frame, overscaled so the opening spans ~80vw and top-anchored
-       at natural aspect: the arch curve crowns the viewport, the columns run
-       down the edges, and the art's heavy lower florals stay below the fold */
+    /* the tall plate, overscaled so the archway spans ~86vw: the crown tops
+       the first screen and the columns run down both edges */
     background-image: var(--wc-arch-mobile);
     background-size: 150% auto;
-    background-position: center top;
+    height: 170vw;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 95%);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent 95%);
   }
 }
 
-/* content narrows into the archway: below the curve's springline the opening
-   is ~62vw wide (desktop art), so 56vw keeps a margin from the columns */
+/* the page opens inside the archway: below the curve's springline the opening
+   runs ~63vw wide, so a 56vw measure keeps clear air beside the columns */
+.container[role="main"] {
+  position: relative;
+  z-index: 1;
+}
+
 @media (min-width: 901px) {
   .container[role="main"] {
-    max-width: min(56vw, 980px);
-    padding-top: calc(0.32 * (100vh - 84px));
+    max-width: min(56vw, 1000px);
+    padding-top: 18vw; /* lands the first line ~a third down the plate */
   }
 }
 
 @media (max-width: 900px) {
   .container[role="main"] {
     max-width: 80vw;
-    /* springline of the top-anchored arch sits around 82vw down the page */
-    padding-top: max(72vw, 28vh);
+    padding-top: 72vw;
   }
-}
-
-/* the back-to-top button lives where the pedestal florals are drawn */
-#back_to_top {
-  z-index: 1025;
 }
 
 @media (prefers-contrast: more) {
