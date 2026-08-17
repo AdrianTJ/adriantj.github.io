@@ -89,11 +89,8 @@
   --wc-accent-bg: rgba(74, 68, 168, 0.08);
   --wc-accent-bd: rgba(74, 68, 168, 0.26);
   --wc-good-bg: rgba(78, 122, 72, 0.1);
-  --wc-good-bd: rgba(78, 122, 72, 0.28);
   --wc-bad-bg: rgba(184, 92, 82, 0.1);
-  --wc-bad-bd: rgba(184, 92, 82, 0.28);
   --wc-warn-bg: rgba(176, 125, 46, 0.12);
-  --wc-warn-bd: rgba(176, 125, 46, 0.3);
 
   --wc-radius-sm: 4px;
   --wc-radius-btn: 6px;
@@ -111,13 +108,14 @@
   --wc-font-body: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --wc-font-mono: "IBM Plex Mono", "SF Mono", "Fira Code", ui-monospace, monospace;
 
-  /* the plate impression: a whisper of cobalt pooling at the corners of the
-     sheet, in place of the old multicolor watercolor blobs. The flat cream
-     stays dominant so the engraved linework carries the page. */
-  --wc-wash-1: radial-gradient(46% 40% at 8% 6%, rgba(47, 42, 140, 0.05), transparent 70%);
-  --wc-wash-2: radial-gradient(40% 34% at 94% 4%, rgba(47, 42, 140, 0.045), transparent 70%);
-  --wc-wash-3: radial-gradient(46% 42% at 94% 94%, rgba(47, 42, 140, 0.05), transparent 70%);
-  --wc-wash-4: radial-gradient(44% 40% at 4% 94%, rgba(47, 42, 140, 0.045), transparent 70%);
+  /* paper shading: a whisper of shadow pooling in the corners of the sheet,
+     kept a neutral warm grey rather than any one ink, since the ink changes
+     daily and the sheet does not. The flat cream stays dominant so the
+     engraved linework carries the page. */
+  --wc-wash-1: radial-gradient(46% 40% at 8% 6%, rgba(86, 74, 58, 0.05), transparent 70%);
+  --wc-wash-2: radial-gradient(40% 34% at 94% 4%, rgba(86, 74, 58, 0.045), transparent 70%);
+  --wc-wash-3: radial-gradient(46% 42% at 94% 94%, rgba(86, 74, 58, 0.05), transparent 70%);
+  --wc-wash-4: radial-gradient(44% 40% at 4% 94%, rgba(86, 74, 58, 0.045), transparent 70%);
   --wc-wash-5: radial-gradient(60% 50% at 50% 50%, rgba(250, 246, 235, 0.5), transparent 75%);
 
   /* feed the theme: al-folio components read these */
@@ -177,11 +175,8 @@ html[data-theme="dark"] {
   --wc-accent-bg: rgba(157, 180, 224, 0.14);
   --wc-accent-bd: rgba(157, 180, 224, 0.32);
   --wc-good-bg: rgba(143, 190, 132, 0.14);
-  --wc-good-bd: rgba(143, 190, 132, 0.32);
   --wc-bad-bg: rgba(224, 154, 144, 0.14);
-  --wc-bad-bd: rgba(224, 154, 144, 0.32);
   --wc-warn-bg: rgba(224, 184, 120, 0.14);
-  --wc-warn-bd: rgba(224, 184, 120, 0.32);
 
   --wc-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.35);
   --wc-shadow-float: 0 2px 6px rgba(0, 0, 0, 0.35), 0 16px 40px rgba(0, 0, 0, 0.45);
@@ -243,7 +238,6 @@ body::before {
   inset: 0;
   z-index: -2;
   background: var(--wc-wash-1), var(--wc-wash-2), var(--wc-wash-3), var(--wc-wash-4), var(--wc-wash-5);
-  filter: saturate(1.05);
 }
 
 body::after {
@@ -358,7 +352,6 @@ html[data-theme="dark"] body::after {
   aspect-ratio: 1338 / 223;
   background-image: var(--wc-band);
   background-size: 100% 100%;
-  background-position: center;
 }
 
 /* the mark, engraved into the cartouche: the logo's own outline paths drawn
