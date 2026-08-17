@@ -103,6 +103,7 @@
   /* arch artwork, blue as the no-JS fallback; data-palette overrides below */
   --wc-arch-desktop: url("../img/arch/arch-desktop-blue.webp");
   --wc-arch-mobile: url("../img/arch/arch-mobile-blue.webp");
+  --wc-band: url("../img/band/band-blue.webp");
 
   --wc-font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
   --wc-font-body: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -185,6 +186,7 @@ html[data-theme="dark"] {
 
   --wc-arch-desktop: url("../img/arch/arch-desktop-blue-dark.webp");
   --wc-arch-mobile: url("../img/arch/arch-mobile-blue-dark.webp");
+  --wc-band: url("../img/band/band-blue-dark.webp");
 
   --global-back-to-top-bg-color: rgba(251, 245, 234, 0.4);
   --global-back-to-top-text-color: var(--wc-bg);
@@ -273,10 +275,12 @@ html[data-theme="dark"] body::after {
  *   masked into a fade so the columns dissolve into the paper, and the page
  *   opens inside the archway before continuing below it on clean stock.
  *
- *   .wc-band (everything else) gets the same file cropped to its cornice: a
- *   slim engraved header rule, in flow, that reads as a letterhead. Reading
- *   width is the theme's own, so posts and grids are never squeezed. Because
- *   it is the same URL as the gateway, the band is free after one visit.
+ *   .wc-band (everything else) gets a separate horizontal plate: a slim
+ *   engraved rule, in flow, that reads as a letterhead. Reading
+ *   width is the theme's own, so posts and grids are never squeezed. The
+ *   plate ends on a straight rule rather than a fade, so it meets the text
+ *   below it cleanly, and its central cartouche is punched back to the page
+ *   colour in both themes so the Foothills Labs mark sits in a window.
  *
  * Either way the layer sits behind the text and swallows no clicks. The ink
  * hue rotates daily: a script in default.liquid stamps html[data-palette]
@@ -344,11 +348,27 @@ html[data-theme="dark"] body::after {
 
 .wc-band .wc-arch {
   position: relative;
-  height: clamp(64px, 7vw, 116px);
-  margin-bottom: clamp(1rem, 2vw, 2.25rem);
-  /* fade the crop so the cornice settles onto the paper */
-  -webkit-mask-image: linear-gradient(to bottom, #000 46%, transparent 98%);
-  mask-image: linear-gradient(to bottom, #000 46%, transparent 98%);
+  /* full bleed on laptops and phones, capped so it never grows into a slab
+     on a wide monitor; the plate is 1338x223, so the ratio is exact and the
+     ornament is never stretched */
+  width: min(100%, 1280px);
+  margin: 0 auto clamp(1.25rem, 2.5vw, 2.5rem);
+  aspect-ratio: 1338 / 223;
+  background-image: var(--wc-band);
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+/* the mark, engraved into the cartouche: the logo's own outline paths drawn
+   in the day's ink, so it belongs to the plate instead of sitting on it */
+.wc-arch-mark {
+  position: absolute;
+  top: 51.8%; /* the cartouche centre, measured off the plate */
+  left: 50%;
+  height: 46%; /* the cartouche is ~52% of the plate; this leaves it air */
+  width: auto;
+  transform: translate(-50%, -50%);
+  color: var(--wc-accent-ink);
 }
 
 @media (prefers-contrast: more) {
@@ -415,6 +435,7 @@ $wc-palettes: (
     --wc-accent-bd: #{rgba(nth($c, 1), 0.26)};
     --wc-arch-desktop: url("../img/arch/arch-desktop-#{$name}.webp");
     --wc-arch-mobile: url("../img/arch/arch-mobile-#{$name}.webp");
+    --wc-band: url("../img/band/band-#{$name}.webp");
   }
 
   html[data-theme="dark"][data-palette="#{$name}"] {
@@ -424,6 +445,7 @@ $wc-palettes: (
     --wc-accent-bd: #{rgba(nth($c, 3), 0.32)};
     --wc-arch-desktop: url("../img/arch/arch-desktop-#{$name}-dark.webp");
     --wc-arch-mobile: url("../img/arch/arch-mobile-#{$name}-dark.webp");
+    --wc-band: url("../img/band/band-#{$name}-dark.webp");
   }
 }
 

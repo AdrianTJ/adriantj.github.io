@@ -24,7 +24,9 @@
       slim cornice band everywhere else. Same image either way, so the
       band costs nothing extra once the gateway has been fetched.
     -->
-    <div class="wc-arch" aria-hidden="true"></div>
+    <div class="wc-arch" aria-hidden="true">
+      {% unless page.layout == 'about' %}{% include foothills-mark.liquid %}{% endunless %}
+    </div>
     <script>
       (function () {
         var palettes = ['blue', 'magenta', 'green', 'orange', 'red', 'yellow'];
