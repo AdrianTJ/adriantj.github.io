@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Foothills Labs
-description: An AI foundation lab: agent-driven experimentation (labloop) and evaluation (regexbench).
+description: "An AI foundation lab: agent-driven experimentation (labloop) and evaluation (regexbench)."
 img: assets/img/project_previews/foothills_labs.png
 importance: 3
 category: work

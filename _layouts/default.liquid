@@ -16,13 +16,24 @@
   </head>
 
   <!-- Body -->
-  <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
-    <!-- Ruin frame (decorative): coin-flip between the two pillar variants per load -->
-    <div class="wc-ruin" id="wc-ruin" aria-hidden="true"></div>
+  <body
+    class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %} {% if page.layout == 'about' %}wc-gateway{% else %}wc-band{% endif %}"
+  >
+    <!--
+      Engraved arch (decorative): the full gateway on the landing page, a
+      slim cornice band everywhere else. Same image either way, so the
+      band costs nothing extra once the gateway has been fetched.
+    -->
+    <div class="wc-arch" aria-hidden="true">
+      {% unless page.layout == 'about' %}{% include foothills-mark.liquid %}{% endunless %}
+    </div>
     <script>
-      if (Math.random() < 0.5) {
-        document.getElementById('wc-ruin').setAttribute('data-pillar', 'b');
-      }
+      (function () {
+        var palettes = ['blue', 'magenta', 'green', 'orange', 'red', 'yellow'];
+        var now = new Date();
+        var day = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+        document.documentElement.setAttribute('data-palette', palettes[day % palettes.length]);
+      })();
     </script>
 
     <!-- Header -->

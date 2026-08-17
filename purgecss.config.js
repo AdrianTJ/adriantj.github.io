@@ -3,10 +3,11 @@ module.exports = {
   css: ["_site/assets/css/*.css"],
   output: "_site/assets/css/",
   skippedContentGlobs: ["_site/assets/**/*.html"],
-  // Selectors keyed off JS-set attributes never appear verbatim in the built
-  // HTML/JS, so PurgeCSS would strip them (it deleted the [data-pillar="b"]
-  // pillar-variant rules in production). Keep everything touching these.
+  // data-palette is written by a script at load, so it never appears verbatim
+  // in the built HTML and PurgeCSS would strip every rule keyed off it —
+  // which is exactly how the daily ink shipped broken once before. Keep
+  // everything touching these.
   safelist: {
-    greedy: [/data-pillar/, /data-theme/, /wc-ruin/],
+    greedy: [/data-palette/, /data-theme/, /wc-arch/],
   },
 };
