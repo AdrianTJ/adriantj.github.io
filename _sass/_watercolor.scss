@@ -1,11 +1,13 @@
 /*******************************************************************************
- * Watercolor design system — token-driven pastel skin for al-folio.
+ * Engraving design system — token-driven skin for al-folio.
  *
- * Warm ivory canvas washed with soft pastel watercolor, editorial serif
- * headings (Fraunces), pill controls, and gentle shadows instead of hard
- * borders. All colors flow through tokens: the --wc-* palette below feeds
- * al-folio's --global-* variables, so components keep their markup and pick
- * up the skin automatically. Dark mode ("dusk") binds to the site's existing
+ * A printed plate: flat cream paper, one ink, editorial serif headings
+ * (Fraunces), tight radii, and gentle shadows instead of hard borders. The
+ * ink is not fixed — six of them rotate by the day (see the arch section) —
+ * so nothing may hard-code an accent. All colors flow through tokens: the
+ * --wc-* palette below feeds al-folio's --global-* variables, so components
+ * keep their markup and pick up the skin automatically. Dark mode ("dusk")
+ * inverts the plate to pale ink on midnight and binds to the site's existing
  * html[data-theme="dark"] toggle. Fonts are self-hosted (no CDN).
  ******************************************************************************/
 
@@ -291,10 +293,7 @@ html[data-theme="dark"] body::after {
 
 .wc-arch {
   pointer-events: none;
-  background-image: var(--wc-arch-desktop);
   background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top center;
 }
 
 /* --- the gateway: landing page only ------------------------------------- */
@@ -305,6 +304,9 @@ html[data-theme="dark"] body::after {
   right: 0;
   left: 0;
   z-index: 0;
+  background-image: var(--wc-arch-desktop);
+  background-size: 100% auto;
+  background-position: top center;
   /* the desktop plate is 1672x941, so its natural height is 56.3vw */
   height: min(56.3vw, 104vh);
   -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 97%);
