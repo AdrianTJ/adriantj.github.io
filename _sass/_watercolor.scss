@@ -312,14 +312,16 @@ html[data-theme="dark"] body::after {
   z-index: 1;
 }
 
-/* the page opens inside the archway: below the curve's springline the opening
-   runs ~63vw wide, so a 56vw measure keeps clear air beside the columns */
+/* The page opens inside the archway, and how high it can open is set by how
+   wide it is: the opening narrows as it climbs into the curve (x 0.206-0.793
+   of the plate at 30% down, but only 0.261-0.739 at 20%). A 56vw measure
+   therefore cannot start above 18.3vw without the curve crowding it, while
+   48vw clears at 12.9vw — the text rides ~1.5vw inside the stone on each
+   side and sits properly framed rather than sunk toward the springline. */
 @media (min-width: 901px) {
   .wc-gateway .container[role="main"] {
-    max-width: min(56vw, 1000px);
-    /* lands the first line ~a third down the plate, where the opening has
-       widened past the measure; higher than this and the curve crowds it */
-    padding-top: 18vw;
+    max-width: min(48vw, 900px);
+    padding-top: 13vw;
   }
 }
 
