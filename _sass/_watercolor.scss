@@ -264,73 +264,91 @@ html[data-theme="dark"] body::after {
 
 /* ---------------------------------------------------------------------------
  * Arch frame — an engraved Toile de Jouy gateway (uploaded illustration, its
- * archway cut transparent) standing at the head of every page. It scrolls
- * WITH the document rather than being pinned to the viewport: a fixed frame
- * necessarily occludes a long page, since anything taller than one screen
- * eventually slides under the garlands. So the arch is an absolute band at
- * the top, the page opens inside the archway, and the engraving is masked
- * into a soft bottom fade so the columns dissolve into the paper instead of
- * ending on a hard edge. Content that outruns the gateway simply continues
- * below it on clean stock, never colliding with the art. The layer sits
- * BEHIND the text (the opening is wider than the measure), so no line is
- * ever clipped by a column.
+ * archway cut transparent), used at two intensities so the ornament stays an
+ * event rather than a tax:
  *
- * The ink hue rotates daily: a script in default.liquid stamps
- * html[data-palette] from the UTC day number, and each palette block below
- * swaps the artwork plus the accent tokens so links and buttons follow the
- * day's ink. Blue is the no-JS fallback, wired into :root and the dark block.
+ *   .wc-gateway (the landing page) gets the full arch. It scrolls WITH the
+ *   document rather than being pinned to the viewport, since a fixed frame
+ *   necessarily occludes a page taller than one screen. Its lower edge is
+ *   masked into a fade so the columns dissolve into the paper, and the page
+ *   opens inside the archway before continuing below it on clean stock.
+ *
+ *   .wc-band (everything else) gets the same file cropped to its cornice: a
+ *   slim engraved header rule, in flow, that reads as a letterhead. Reading
+ *   width is the theme's own, so posts and grids are never squeezed. Because
+ *   it is the same URL as the gateway, the band is free after one visit.
+ *
+ * Either way the layer sits behind the text and swallows no clicks. The ink
+ * hue rotates daily: a script in default.liquid stamps html[data-palette]
+ * from the UTC day number, and each palette block below swaps the artwork
+ * plus the accent tokens so links and buttons follow the day's ink. Blue is
+ * the no-JS fallback, wired into :root and the dark block.
  * ------------------------------------------------------------------------ */
 
 .wc-arch {
+  pointer-events: none;
+  background-image: var(--wc-arch-desktop);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+}
+
+/* --- the gateway: landing page only ------------------------------------- */
+
+.wc-gateway .wc-arch {
   position: absolute;
   top: 80px; /* clears the floating navbar card */
   right: 0;
   left: 0;
   z-index: 0;
-  pointer-events: none;
   /* the desktop plate is 1672x941, so its natural height is 56.3vw */
   height: min(56.3vw, 104vh);
-  background-image: var(--wc-arch-desktop);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top center;
-  /* dissolve the shafts into the paper before the pedestals would reach the
-     text column; also hides the crop when the height cap bites */
   -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 97%);
   mask-image: linear-gradient(to bottom, #000 68%, transparent 97%);
 }
 
-@media (max-width: 900px) {
-  .wc-arch {
-    /* the tall plate, overscaled so the archway spans ~86vw: the crown tops
-       the first screen and the columns run down both edges */
-    background-image: var(--wc-arch-mobile);
-    background-size: 150% auto;
-    height: 170vw;
-    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 95%);
-    mask-image: linear-gradient(to bottom, #000 62%, transparent 95%);
-  }
-}
-
-/* the page opens inside the archway: below the curve's springline the opening
-   runs ~63vw wide, so a 56vw measure keeps clear air beside the columns */
-.container[role="main"] {
+.wc-gateway .container[role="main"] {
   position: relative;
   z-index: 1;
 }
 
+/* the page opens inside the archway: below the curve's springline the opening
+   runs ~63vw wide, so a 56vw measure keeps clear air beside the columns */
 @media (min-width: 901px) {
-  .container[role="main"] {
+  .wc-gateway .container[role="main"] {
     max-width: min(56vw, 1000px);
-    padding-top: 18vw; /* lands the first line ~a third down the plate */
+    /* lands the first line ~a third down the plate, where the opening has
+       widened past the measure; higher than this and the curve crowds it */
+    padding-top: 18vw;
   }
 }
 
 @media (max-width: 900px) {
-  .container[role="main"] {
+  .wc-gateway .wc-arch {
+    background-image: var(--wc-arch-mobile);
+    background-size: 150% auto;
+    height: 150vw;
+    -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 92%);
+    mask-image: linear-gradient(to bottom, #000 58%, transparent 92%);
+  }
+
+  .wc-gateway .container[role="main"] {
     max-width: 80vw;
+    /* the capitals land around 65-71vw, so the first line has to start below
+       them or the title collides with the carving */
     padding-top: 72vw;
   }
+}
+
+/* --- the band: every other page ----------------------------------------- */
+
+.wc-band .wc-arch {
+  position: relative;
+  height: clamp(64px, 7vw, 116px);
+  margin-bottom: clamp(1rem, 2vw, 2.25rem);
+  /* fade the crop so the cornice settles onto the paper */
+  -webkit-mask-image: linear-gradient(to bottom, #000 46%, transparent 98%);
+  mask-image: linear-gradient(to bottom, #000 46%, transparent 98%);
 }
 
 @media (prefers-contrast: more) {
@@ -338,7 +356,7 @@ html[data-theme="dark"] body::after {
     display: none;
   }
 
-  .container[role="main"] {
+  .wc-gateway .container[role="main"] {
     padding-top: 0;
   }
 }
