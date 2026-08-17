@@ -106,14 +106,19 @@ ninja.data = [{
               window.location.href = "/projects/agentic_engineering/";
             },},{id: "projects-bayesian-optimization-with-bass",
           title: 'Bayesian Optimization with BASS',
-          description: "My MSc thesis — Bayesian Adaptive Spline Surfaces as a surrogate model for Bayesian optimization.",
+          description: "My MSc thesis: Bayesian Adaptive Spline Surfaces as a surrogate model for Bayesian optimization.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/bayesian_optim_bass/";
-            },},{id: "projects-gospeedtests",
-          title: 'GoSpeedTests',
+            },},{id: "projects-foothills-labs",
+          title: 'Foothills Labs',
+          description: "An AI foundation lab: agent-driven experimentation (labloop) and evaluation (regexbench).",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/foothills_labs/";
+            },},{id: "projects-loadstar",
+          title: 'Loadstar',
           description: "A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/gospeedtests/";
+              window.location.href = "/projects/loadstar/";
             },},{id: "projects-mollify",
           title: 'Mollify',
           description: "A Rust-native static analysis engine that delivers deterministic codebase intelligence for Python.",
@@ -126,7 +131,7 @@ ninja.data = [{
               window.location.href = "/projects/rust_learning/";
             },},{id: "projects-template-ai-engineering",
           title: 'template-ai-engineering',
-          description: "A template for bootstrapping the AI agent journey — skills, agents, and connections that project into any harness.",
+          description: "A template for bootstrapping the AI agent journey: skills, agents, and connections that project into any harness.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/template_ai_engineering/";
             },},{id: "projects-trading-strategies",
