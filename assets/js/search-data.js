@@ -109,11 +109,6 @@ ninja.data = [{
           description: "My MSc thesis: Bayesian Adaptive Spline Surfaces as a surrogate model for Bayesian optimization.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/bayesian_optim_bass/";
-            },},{id: "projects-foothills-labs",
-          title: 'Foothills Labs',
-          description: "An AI foundation lab: agent-driven experimentation (labloop) and evaluation (regexbench).",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/foothills_labs/";
             },},{id: "projects-loadstar",
           title: 'Loadstar',
           description: "A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.",
@@ -124,6 +119,11 @@ ninja.data = [{
           description: "A Rust-native static analysis engine that delivers deterministic codebase intelligence for Python.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/mollify/";
+            },},{id: "projects-plicara-labs",
+          title: 'Plicara Labs',
+          description: "My independent AI research lab: reproducible studies, benchmarks, and tools.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/foothills_labs/";
             },},{id: "projects-rust-learning",
           title: 'Rust Learning',
           description: "Notes and code as I learn Rust.",
