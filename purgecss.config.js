@@ -3,11 +3,8 @@ module.exports = {
   css: ["_site/assets/css/*.css"],
   output: "_site/assets/css/",
   skippedContentGlobs: ["_site/assets/**/*.html"],
-  // data-palette is written by a script at load, so it never appears verbatim
-  // in the built HTML and PurgeCSS would strip every rule keyed off it —
-  // which is exactly how the daily ink shipped broken once before. Keep
-  // everything touching these.
+  // Keep states applied by the theme and time-of-day scripts.
   safelist: {
-    greedy: [/data-palette/, /data-theme/, /wc-arch/],
+    greedy: [/data-sky/, /data-theme/, /is-active/, /is-typing/],
   },
 };
