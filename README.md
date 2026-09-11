@@ -39,6 +39,21 @@ You can find my full portfolio and blog at:
 
 This site is built using [Jekyll](https://jekyllrb.com/) and the [al-folio](https://github.com/alshedivat/al-folio) theme. It is automatically deployed via GitHub Actions to GitHub Pages.
 
+## Local development
+
+Use Ruby 3.3, ImageMagick, and Python with `nbconvert` available. Install the Ruby dependencies with `BUNDLE_PATH=vendor/bundle bundle install`. For an isolated Python environment, run `uv venv .venv` followed by `uv pip install --python .venv/bin/python nbconvert`.
+
+On an Apple Silicon Mac with Homebrew Ruby 3.3:
+
+```sh
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PWD/.venv/bin:$PATH"
+BUNDLE_PATH=vendor/bundle bundle exec jekyll serve --host 127.0.0.1 --port 4000 --livereload
+```
+
+Open [localhost:4000](http://127.0.0.1:4000/). Work on feature branches; the deployment workflow publishes pushes to `main` or `master`.
+
+The cloud theme, time-of-day preview links, and image credits are documented in [docs/sky-theme.md](docs/sky-theme.md).
+
 ## 📬 Contact
 
 - **Email:** [adrian.tame.jacobo@gmail.com](mailto:adrian.tame.jacobo@gmail.com)

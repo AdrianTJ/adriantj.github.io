@@ -17,30 +17,19 @@
 
   <!-- Body -->
   <body
-    class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %} {% if page.layout == 'about' %}wc-gateway{% else %}wc-band{% endif %}"
+    class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% if page.layout == 'about' %}sky-home{% else %}sky-reading{% endif %}"
   >
-    <!--
-      Engraved arch (decorative): the full gateway on the landing page, a
-      slim cornice band everywhere else. Same image either way, so the
-      band costs nothing extra once the gateway has been fetched.
-    -->
-    <div class="wc-arch" aria-hidden="true">
-      {% unless page.layout == 'about' %}{% include foothills-mark.liquid %}{% endunless %}
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="sky-backdrop" aria-hidden="true" data-sky-base="{{ '/assets/img/sky/' | relative_url }}">
+      <div class="sky-layer"></div>
+      <div class="sky-layer"></div>
     </div>
-    <script>
-      (function () {
-        var palettes = ['blue', 'magenta', 'green', 'orange', 'red', 'yellow'];
-        var now = new Date();
-        var day = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
-        document.documentElement.setAttribute('data-palette', palettes[day % palettes.length]);
-      })();
-    </script>
 
     <!-- Header -->
     {% include header.liquid %}
 
     <!-- Content -->
-    <div class="container mt-5" role="main">
+    <main id="main" class="container site-content" tabindex="-1">
       {% if page.toc and page.toc.sidebar %}
         {% if page.toc.sidebar == 'right' %}
           <div class="row">
@@ -64,7 +53,7 @@
       {% else %}
         {{ content }}
       {% endif %}
-    </div>
+    </main>
 
     <!-- Footer -->
 

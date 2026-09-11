@@ -4,8 +4,8 @@ github_users:
 repo_description_lines_max: 2
 
 github_repos:
-  - foothills-labs/labloop
-  - foothills-labs/regexbench
+  - plicara/labloop
+  - plicara/regexbench
   - AdrianTJ/mollify
   - AdrianTJ/BayesianOptim_BASS
   - AdrianTJ/agentic_engineering
