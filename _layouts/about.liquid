@@ -30,6 +30,11 @@ layout: default
       </a>
     </div>
     <p class="desc">{{ page.subtitle }}</p>
+    <nav class="home-links" aria-label="Contact and experience">
+      <a href="mailto:{{ site.data.socials.email | encode_email }}">Email</a>
+      <a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a>
+      <a href="{{ '/cv/' | relative_url }}">CV / experience</a>
+    </nav>
   </header>
 
   <article>
@@ -56,7 +61,26 @@ layout: default
       </div>
     {% endif %}
 
-    <div class="home-bio clearfix">{{ content }}</div>
+    <section class="selected-work" id="selected-work" aria-labelledby="selected-work-title">
+      <h2 id="selected-work-title">selected work</h2>
+      <ul>
+        {% assign featured_projects = site.projects | where: 'featured', true | sort: 'importance' %}
+        {% for project in featured_projects %}
+          <li>
+            <h3>
+              <a href="{{ project.url | relative_url }}">{{ project.featured_title | default: project.title }}</a>
+            </h3>
+            <p>{{ project.featured_summary }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{{ '/projects/' | relative_url }}">All projects →</a>
+    </section>
+
+    <div class="home-bio clearfix">
+      <h2>about me</h2>
+      {{ content }}
+    </div>
 
     <!-- News -->
     {% if page.announcements and page.announcements.enabled %}
