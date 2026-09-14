@@ -23,12 +23,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "nav-academic",
-          title: "academic",
-          description: "Coursework, notes, and past academic projects.",
+        },{id: "nav-experience",
+          title: "experience",
+          description: "Applied ML, experimentation, research, and data-science leadership.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/academic/";
+            window.location.href = "/cv/";
           },
         },{id: "nav-bookshelf",
           title: "bookshelf",
@@ -69,16 +69,26 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/a_hunger_artist/";
+            },},{id: "books-a-moveable-feast",
+          title: 'A Moveable Feast',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/a_moveable_feast/";
             },},{id: "books-homesick-for-another-world",
           title: 'Homesick for Another World',
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/homesick_for_another_world/";
-            },},{id: "books-the-godfather",
-          title: 'The Godfather',
+            },},{id: "books-house-of-leaves",
+          title: 'House of Leaves',
           description: "",
           section: "Books",handler: () => {
-              window.location.href = "/books/the_godfather/";
+              window.location.href = "/books/house_of_leaves/";
+            },},{id: "books-the-algebraist",
+          title: 'The Algebraist',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/the_algebraist/";
             },},{id: "books-the-stranger",
           title: 'The Stranger',
           description: "",
@@ -99,29 +109,24 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-01-02_new_site/";
-            },},{id: "projects-agentic-engineering",
-          title: 'Agentic Engineering',
-          description: "Agents and skills for agentic engineering workflows.",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/agentic_engineering/";
             },},{id: "projects-bayesian-optimization-with-bass",
           title: 'Bayesian Optimization with BASS',
-          description: "My MSc thesis: Bayesian Adaptive Spline Surfaces as a surrogate model for Bayesian optimization.",
+          description: "Thesis research on spline surrogates and how experimental machinery affects Bayesian-optimization comparisons.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/bayesian_optim_bass/";
-            },},{id: "projects-loadstar",
-          title: 'Loadstar',
-          description: "A high-performance, open-source page speed analysis toolkit written in Go for measuring and tracking web performance metrics.",
+            },},{id: "projects-labloop",
+          title: 'labloop',
+          description: "An agent-driven experiment loop that measures proposed changes and records every trial, including failures.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/loadstar/";
+              window.location.href = "/projects/labloop/";
             },},{id: "projects-mollify",
           title: 'Mollify',
-          description: "A Rust-native static analysis engine that delivers deterministic codebase intelligence for Python.",
+          description: "A collaborative Rust project that gives coding agents reproducible, inspectable findings about Python codebases.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/mollify/";
             },},{id: "projects-plicara-labs",
           title: 'Plicara Labs',
-          description: "My independent AI research lab: reproducible studies, benchmarks, and tools.",
+          description: "My independent research practice: studies of AI evaluation, regex correctness, safety, and benchmark answer keys.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/foothills_labs/";
             },},{id: "projects-rust-learning",
@@ -129,16 +134,6 @@ ninja.data = [{
           description: "Notes and code as I learn Rust.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/rust_learning/";
-            },},{id: "projects-template-ai-engineering",
-          title: 'template-ai-engineering',
-          description: "A template for bootstrapping the AI agent journey: skills, agents, and connections that project into any harness.",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/template_ai_engineering/";
-            },},{id: "projects-trading-strategies",
-          title: 'Trading Strategies',
-          description: "A site to track how trading strategies perform over time.",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/trading_strategies/";
             },},{
         id: 'social-email',
         title: 'email',
