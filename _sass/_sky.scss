@@ -169,7 +169,8 @@ a {
   text-underline-offset: 0.25em;
 }
 .home-bio a,
-article p a {
+article p a,
+article li a {
   text-decoration: underline;
   text-decoration-color: var(--sky-line);
 }
@@ -304,6 +305,43 @@ a:hover {
 }
 .home-bio {
   max-width: 76ch;
+  margin-top: 3.5rem;
+}
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.9375rem;
+  a {
+    padding-block: 0.4rem;
+    text-decoration: underline;
+  }
+}
+.selected-work {
+  max-width: 76ch;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+  }
+  li {
+    border-top: 1px solid var(--sky-line);
+    padding-top: 1.25rem;
+  }
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  p {
+    font-size: 0.9375rem;
+    color: var(--sky-muted);
+    line-height: 1.75;
+  }
+}
+.selected-work > h2,
+.home-bio > h2 {
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
 }
 .sky-home article > h2 {
   font-size: 1rem;
@@ -407,6 +445,19 @@ pre {
 pre code {
   padding: 0;
 }
+.highlight pre {
+  background-color: var(--sky-code);
+}
+.highlight code [class] {
+  color: var(--sky-ink);
+  background-color: transparent;
+}
+.highlight code :is(.c, .c1, .cm, .cp, .cs) {
+  color: var(--sky-muted);
+}
+.highlight code :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .nt, .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sr, .ss, .sx) {
+  color: var(--sky-link);
+}
 .btn,
 .badge {
   border-radius: 5px;
@@ -469,7 +520,8 @@ img {
 .projects .card-img-top[src$="/plicara-mark.svg"] {
   background: #f8fafc;
 }
-.projects .card-text {
+.projects .card .card-body .card-text {
+  color: var(--sky-ink);
   font-size: 0.875rem;
   line-height: 1.7;
 }

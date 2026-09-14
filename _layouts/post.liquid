@@ -66,7 +66,7 @@ layout: default
       <hr>
     {% endif %}
     <div id="markdown-content">
-      {{ content }}
+      {{ content | replace: '<table>', '<table tabindex="0">' }}
     </div>
   </article>
 
