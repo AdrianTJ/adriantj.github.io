@@ -65,17 +65,43 @@ class SiteTest(unittest.TestCase):
         self.assertIn('href="/cv/"', html)
         self.assertLess(html.index('id="selected-work"'), html.index('class="home-bio'))
         self.assertNotIn("Starting migration", html)
+        self.assertNotIn("I also help build", html)
+        for interest in ("agentic systems", "benchmarking", "novel AI research", "anomaly detection"):
+            self.assertIn(f"<strong>{interest}</strong>", html)
 
-    def test_cv_and_metadata_use_current_education_status(self):
+    def test_cv_keeps_role_summary_and_full_cv_contact(self):
         cv = (SITE / "cv/index.html").read_text()
-        self.assertIn("Coursework completed in 2022", cv)
-        self.assertIn("thesis expected September 2026", cv)
         for employer in ("S&amp;P Global", "Zillow", "Coca-Cola FEMSA"):
             self.assertIn(employer, cv)
+        self.assertIn("For my full CV", cv)
+        for contact in ("mailto:adrian.tame.jacobo@gmail.com", "https://www.linkedin.com/in/adrian-tj/", "https://x.com/Adrian_TameJ"):
+            self.assertIn(contact, Page(cv).links)
+        experience = cv.split('<h2 id="experience">')[1].split('<h2 id="independent-research-and-open-source">')[0]
+        self.assertEqual(experience.count("<h3"), 4)
+        self.assertNotIn("<li>", experience)
+        self.assertNotIn("Teaching and academic work", cv)
+        self.assertNotIn("thesis expected September 2026", cv)
+        self.assertIn("My research develops Bayesian Adaptive Spline Surfaces", cv)
+        self.assertIn("Technical practice", cv)
+
+    def test_home_metadata_and_education_status(self):
         home = (SITE / "index.html").read_text()
         self.assertIn('property="og:title"', home)
         self.assertIn("Plicara", home)
         self.assertNotIn("have a MSc", home)
+
+    def test_projects_add_labloop_and_retire_older_entries(self):
+        links = Page((SITE / "projects/index.html").read_text()).links
+        self.assertIn("/projects/labloop/", links)
+        for slug in ("agentic_engineering", "template_ai_engineering", "loadstar", "trading_strategies"):
+            self.assertNotIn(f"/projects/{slug}/", links)
+            self.assertFalse((SITE / f"projects/{slug}/index.html").exists())
+
+    def test_finished_books_are_on_the_shelf(self):
+        links = Page((SITE / "books/index.html").read_text()).links
+        for slug in ("a_moveable_feast", "house_of_leaves", "the_algebraist"):
+            self.assertIn(f"/books/{slug}/", links)
+            self.assertIn("status: Finished", (ROOT / f"_books/{slug}.md").read_text())
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 ---
 layout: page
+published: false
 title: Agentic Engineering
 description: Agents and skills for agentic engineering workflows.
 img: assets/img/project_previews/agentic_engineering.png

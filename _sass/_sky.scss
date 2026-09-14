@@ -170,7 +170,8 @@ a {
 }
 .home-bio a,
 article p a,
-article li a {
+article li a,
+article figcaption a {
   text-decoration: underline;
   text-decoration-color: var(--sky-line);
 }

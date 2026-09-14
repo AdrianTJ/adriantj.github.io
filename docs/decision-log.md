@@ -23,3 +23,11 @@
 - **Context:** Adrian approved the website critique and requested implementation across the personal site, Plicara, and GitHub profile, with separate PRs for review. He supplied a CV and asked for high-level descriptions rather than verbatim metrics or internal details.
 - **Decision:** Preserve the sky design, add contact and experience links near the name, and feature regex evaluation, Bayesian-optimization research, and the collaborative Mollify project before the full biography. Add an experience page using the supplied roles and dates, and consistently describe MSc coursework as completed with the thesis expected in September 2026. Move academic archives out of primary navigation and retain news and sample-book sources without promoting outdated or placeholder content.
 - **Consequences:** The public record distinguishes independent research, collaborative work, and employer experience without inventing management scope or publishing internal impact figures. The GitHub profile and lab link back to the experience page, so merge the personal-site PR first. Automated link and accessibility checks cover the redesigned pages; the clarified research interpretation is proposed separately in Plicara's PR. Nothing is deployed or merged by this task.
+
+## DEC-004: Keep the public CV brief and curate the project list
+
+- **Date:** 2026-09-13
+- **Status:** decided
+- **Context:** After reviewing PR #16, Adrian requested a lighter experience page and a more selective project list. This refines the public-detail level chosen in DEC-003.
+- **Decision:** Show position titles, dates, and locations without role descriptions or teaching history, retain research and technical practice, and direct readers to email, LinkedIn, or X for the full CV. Use the requested concise education wording. Remove the Mollify sentence from the homepage biography, consistently emphasize collaboration interests, add labloop to projects, and unpublish Agentic Engineering, template-ai-engineering, Loadstar, and Trading Strategies while retaining their sources.
+- **Consequences:** The website remains an introduction rather than a full CV. Retired projects are absent from the public site and can be restored from their existing source files. Existing MSc status details elsewhere are unchanged; this edit does not assert that a degree has been awarded.

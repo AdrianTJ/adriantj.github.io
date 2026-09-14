@@ -57,7 +57,7 @@ The cloud theme, time-of-day preview links, and image credits are documented in 
 
 ## Content and checks
 
-The homepage keeps a short introduction, direct contact links, and selected work ahead of the full biography. Featured summaries live with their project in `_projects/`; set `featured: true`, `featured_summary`, and optionally `featured_title`. `_pages/cv.md` holds the public experience and education record. Keep these details consistent with the GitHub profile and Plicara, and publish only approved high-level employer information. News stays in its archive; the inherited sample book review is unpublished rather than removed.
+The homepage keeps a short introduction, direct contact links, and selected work ahead of the full biography. Featured summaries live with their project in `_projects/`; set `featured: true`, `featured_summary`, and optionally `featured_title`. Set `published: false` to retire a project without deleting its source. `_pages/cv.md` is a short public overview: job titles, dates, locations, research, education, and technical practice. Direct readers to email, LinkedIn, or X for the full CV rather than publishing role details or teaching history. News stays in its archive; the inherited sample book review is unpublished rather than removed.
 
 After building `_site`, run `python3 _scripts/test_site.py` to check internal links and regression cases. Browser checks use the running preview and test desktop/mobile layouts, both themes, accessibility, contact links, and no-JavaScript rendering:
 

@@ -9,7 +9,11 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = os.environ.get("SITE_URL", "http://127.0.0.1:4000")
-ROUTES = ("/", "/projects/", "/cv/", "/books/", "/blog/", "/blog/2026/mollify/", "/projects/foothills_labs/")
+ROUTES = (
+    "/", "/projects/", "/cv/", "/books/", "/blog/", "/blog/2026/mollify/",
+    "/projects/foothills_labs/", "/projects/labloop/", "/books/a_moveable_feast/",
+    "/books/house_of_leaves/", "/books/the_algebraist/",
+)
 
 
 class BrowserTest(unittest.TestCase):
@@ -67,6 +71,14 @@ class BrowserTest(unittest.TestCase):
         self.assertEqual(page.locator(".selected-work li").count(), 3)
         self.assertTrue(page.locator('.home-links a[href="/cv/"]').is_visible())
         context.close()
+
+    def test_new_books_are_shown_as_finished(self):
+        page = self.browser.new_page()
+        page.goto(BASE + "/books/", wait_until="networkidle")
+        for slug in ("a_moveable_feast", "house_of_leaves", "the_algebraist"):
+            entry = page.locator(f'.book-entry[href="/books/{slug}/"]')
+            self.assertEqual(entry.locator(".book-status").inner_text(), "finished")
+        page.close()
 
 
 if __name__ == "__main__":
