@@ -29,7 +29,7 @@ My work focuses on:
 - **Causal Inference** (Measuring impact in complex environments)
 - **Experimental Design** (Large-scale A/B testing frameworks)
 
-I studied Applied Mathematics at **ITAM** and completed my MSc in Data Science coursework in 2022; my thesis is expected in September 2026. See the [experience page](https://adriantj.github.io/cv/) for the high-level public record.
+I studied Applied Mathematics at **ITAM** and completed my MSc in Data Science coursework in 2022; my thesis is submitted and awaiting defense. See the [experience page](https://adriantj.github.io/cv/) for the high-level public record.
 
 ## 🌐 Live Site
 

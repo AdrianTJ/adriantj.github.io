@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false
 title: Search algorithm simulations talk in Guadalajara, Mexico
 date: 2025-10-22 15:59:00-0400
 inline: false

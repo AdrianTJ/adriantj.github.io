@@ -29,7 +29,7 @@ September 2022–August 2023 · Mexico City
 
 ## Independent research and open source
 
-- **[Plicara Labs](/projects/foothills_labs/):** I develop reproducible studies, benchmarks, and tools for AI evaluation, including regexbench and labloop.
+- **[Plicara Labs](/projects/plicara_labs/):** I develop reproducible studies, benchmarks, and tools for AI evaluation, including regexbench and labloop.
 - **[Bayesian optimization with BASS](/projects/bayesian_optim_bass/):** My thesis investigates spline surrogates; companion work examines how experimental machinery affects optimizer comparisons.
 - **[Mollify](/projects/mollify/):** I help build a Rust-native static analysis engine for Python codebases with Favio Vázquez.
 
@@ -37,7 +37,7 @@ September 2022–August 2023 · Mexico City
 
 **MSc in Data Science · ITAM**
 
-My research develops Bayesian Adaptive Spline Surfaces as a surrogate for Bayesian optimization.
+Thesis submitted; defense pending. My research develops Bayesian Adaptive Spline Surfaces as a surrogate for Bayesian optimization.
 
 **BSc in Applied Mathematics · ITAM**
 
