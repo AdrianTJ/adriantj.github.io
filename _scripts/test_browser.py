@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = os.environ.get("SITE_URL", "http://127.0.0.1:4000")
 ROUTES = (
     "/", "/projects/", "/cv/", "/books/", "/blog/", "/blog/2026/mollify/",
-    "/projects/foothills_labs/", "/projects/labloop/", "/books/a_moveable_feast/",
+    "/projects/plicara_labs/", "/projects/labloop/", "/books/a_moveable_feast/",
     "/books/house_of_leaves/", "/books/the_algebraist/",
 )
 
@@ -50,6 +50,13 @@ class BrowserTest(unittest.TestCase):
                                 name = route.strip("/").replace("/", "-") or "home"
                                 page.screenshot(path=str(directory / f"{name}-{width}-{theme}.png"), full_page=True)
                     context.close()
+
+    def test_retired_lab_url_redirects(self):
+        context = self.browser.new_context()
+        page = context.new_page()
+        page.goto(BASE + "/projects/foothills_labs/")
+        page.wait_for_url("**/projects/plicara_labs/")
+        context.close()
 
     def test_mobile_navigation_and_contact(self):
         context = self.browser.new_context(viewport={"width": 390, "height": 844}, reduced_motion="reduce")
