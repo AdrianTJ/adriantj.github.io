@@ -31,3 +31,11 @@
 - **Context:** After reviewing PR #16, Adrian requested a lighter experience page and a more selective project list. This refines the public-detail level chosen in DEC-003.
 - **Decision:** Show position titles, dates, and locations without role descriptions or teaching history, retain research and technical practice, and direct readers to email, LinkedIn, or X for the full CV. Use the requested concise education wording. Remove the Mollify sentence from the homepage biography, consistently emphasize collaboration interests, add labloop to projects, and unpublish Agentic Engineering, template-ai-engineering, Loadstar, and Trading Strategies while retaining their sources.
 - **Consequences:** The website remains an introduction rather than a full CV. Retired projects are absent from the public site and can be restored from their existing source files. Existing MSc status details elsewhere are unchanged; this edit does not assert that a degree has been awarded.
+
+## DEC-005: Refresh stale facts and retire template leftovers
+
+- **Date:** 2026-10-12
+- **Status:** decided
+- **Context:** A site review found the thesis still listed as expected in September 2026, a stale news archive with typos still live at `/news/`, the deprecated Foothills name in the Plicara project URL, a lowercase two-word page title, template keywords, and unused al-folio demo media.
+- **Decision:** Describe the MSc thesis as submitted with the defense pending. Keep the official "Lead II Data Scientist" title. Unpublish the news archive and both news posts while keeping their sources. Move the Plicara page to `/projects/plicara_labs/` and keep `/projects/foothills_labs/` as a redirect. Use the full name "Adrian Tame Jacobo" in page titles and metadata through a new `full_name` setting, while the homepage keeps the typed short name. Replace the keywords, enable Schema.org metadata, add the X profile to the social links, replace "a decade+ of statistical practice" with "years of statistical practice", and delete the unused demo video, audio, and Plotly files.
+- **Consequences:** Old Plicara links still resolve. Search results and link previews show the full name. The repository loses about 33 MB of demo media that the site never referenced. When the defense happens, update `_pages/about.md`, `_pages/cv.md`, `_projects/bayesian_optim_bass.md`, and `README.md`.

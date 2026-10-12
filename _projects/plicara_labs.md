@@ -2,7 +2,7 @@
 layout: page
 title: Plicara Labs
 description: "My independent research practice: studies of AI evaluation, regex correctness, safety, and benchmark answer keys."
-permalink: /projects/foothills_labs/
+permalink: /projects/plicara_labs/
 importance: 1
 featured: true
 featured_title: Regex evaluation at Plicara Labs

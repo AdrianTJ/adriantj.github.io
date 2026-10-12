@@ -14,7 +14,7 @@ My master's thesis explores **Bayesian Adaptive Spline Surfaces (BASS)** as a su
 
 ## My contribution
 
-I develop and evaluate BASS-based surrogates alongside Gaussian-process baselines, with shared experimental code and recorded results. This is my MSc thesis work at ITAM, expected in September 2026 after completing the coursework in 2022.
+I develop and evaluate BASS-based surrogates alongside Gaussian-process baselines, with shared experimental code and recorded results. This is my MSc thesis work at ITAM; I completed the coursework in 2022, and the thesis is submitted and awaiting defense.
 
 The companion manuscript, [The Machinery Confound](https://github.com/AdrianTJ/BayesianOptim_BASS/blob/main/article_bo_machinery/main.tex), investigates how candidate generation, acquisition optimization, and repeated evaluations can affect comparisons attributed to the surrogate model. It is a research manuscript, not a claim that one surrogate is universally better.
 
