@@ -99,16 +99,6 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/vermis/";
-            },},{id: "news-search-algorithm-simulations-talk-in-guadalajara-mexico",
-          title: 'Search algorithm simulations talk in Guadalajara, Mexico',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/2025-10-22_gdl_conference/";
-            },},{id: "news-starting-migration-to-new-personal-website",
-          title: 'Starting migration to new personal website',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/2026-01-02_new_site/";
             },},{id: "projects-bayesian-optimization-with-bass",
           title: 'Bayesian Optimization with BASS',
           description: "Thesis research on spline surrogates and how experimental machinery affects Bayesian-optimization comparisons.",
@@ -128,7 +118,7 @@ ninja.data = [{
           title: 'Plicara Labs',
           description: "My independent research practice: studies of AI evaluation, regex correctness, safety, and benchmark answer keys.",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/foothills_labs/";
+              window.location.href = "/projects/plicara_labs/";
             },},{id: "projects-rust-learning",
           title: 'Rust Learning',
           description: "Notes and code as I learn Rust.",
@@ -161,6 +151,13 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/Adrian_TameJ", "_blank");
         },
       },{
       id: 'light-theme',
