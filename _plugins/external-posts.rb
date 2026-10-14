@@ -23,7 +23,12 @@ module ExternalPosts
     end
 
     def fetch_from_rss(site, src)
-      xml = HTTParty.get(src['rss_url']).body
+      begin
+        xml = HTTParty.get(src['rss_url']).body
+      rescue StandardError => e
+        puts "Error fetching RSS feed from #{src['rss_url']} - #{e.message}"
+        return
+      end
       return if xml.nil?
       begin
         feed = Feedjira.parse(xml)
@@ -58,6 +63,8 @@ module ExternalPosts
       end
 
       path = site.in_source_dir("_posts/#{slug}.md")
+      # A piece moved between feeds can briefly appear in both; keep the first copy
+      return if site.collections['posts'].docs.any? { |d| d.path == path }
       doc = Jekyll::Document.new(
         path, { :site => site, :collection => site.collections['posts'] }
       )
@@ -67,6 +74,9 @@ module ExternalPosts
       doc.data['description'] = content[:summary]
       doc.data['date'] = content[:published]
       doc.data['redirect'] = url
+      # Stub pages only forward to the original, so skip the delay and keep them out of the sitemap
+      doc.data['redirect_delay'] = 0
+      doc.data['sitemap'] = false
       doc.content = content[:content]
       site.collections['posts'].docs << doc
     end

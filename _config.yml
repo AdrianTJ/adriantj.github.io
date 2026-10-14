@@ -85,7 +85,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: the paperclip manifesto # blog_name will be displayed in your blog page
-blog_description: notes on data science, tooling, and building with (and for) machines # could add description here
+blog_description: notes on data science, tooling, and building with (and for) machines, plus research from Plicara Labs # could add description here
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -120,7 +120,11 @@ disqus_shortname: al-folio # put your disqus shortname
 # External sources.
 # If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
-# external_sources:
+external_sources:
+  - name: plicara research
+    rss_url: https://plicara.ai/research/feed.xml
+  - name: plicara essays
+    rss_url: https://plicara.ai/essays/feed.xml
 # - name: medium.com
 #   rss_url: https://medium.com/@al-folio/feed
 # - name: Google Blog

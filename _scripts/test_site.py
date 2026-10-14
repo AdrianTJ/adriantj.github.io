@@ -84,6 +84,16 @@ class SiteTest(unittest.TestCase):
         self.assertIn("My research develops Bayesian Adaptive Spline Surfaces", cv)
         self.assertIn("Technical practice", cv)
 
+    def test_writing_includes_plicara_research(self):
+        blog = (SITE / "blog/index.html").read_text()
+        sections = ("https://plicara.ai/research/", "https://plicara.ai/essays/")
+        external = [link for link in Page(blog).links if link.startswith(sections)]
+        if not external:
+            self.skipTest("Plicara feeds were unavailable at build time")
+        self.assertIn("plicara research", blog)
+        home = Page((SITE / "index.html").read_text()).links
+        self.assertTrue(any(link.startswith(sections) for link in home))
+
     def test_home_metadata_and_education_status(self):
         home = (SITE / "index.html").read_text()
         self.assertIn('property="og:title"', home)
