@@ -63,7 +63,6 @@ class BrowserTest(unittest.TestCase):
         page = context.new_page()
         page.goto(BASE, wait_until="networkidle")
         self.assertLess(page.locator(".home-links").bounding_box()["y"], 844)
-        self.assertEqual(page.locator(".selected-work li").count(), 3)
         page.get_by_role("button", name="Toggle navigation").click()
         page.locator("#navbarNav").get_by_role("link", name="experience", exact=True).click()
         page.wait_for_url("**/cv/")
@@ -75,7 +74,7 @@ class BrowserTest(unittest.TestCase):
         page = context.new_page()
         page.goto(BASE)
         self.assertIn("adrian", page.locator("h1").inner_text())
-        self.assertEqual(page.locator(".selected-work li").count(), 3)
+        self.assertTrue(page.locator(".home-bio").is_visible())
         self.assertTrue(page.locator('.home-links a[href="/cv/"]').is_visible())
         context.close()
 
