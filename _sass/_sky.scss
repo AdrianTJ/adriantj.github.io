@@ -318,28 +318,6 @@ a:hover {
     text-decoration: underline;
   }
 }
-.selected-work {
-  max-width: 76ch;
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1rem;
-  }
-  li {
-    border-top: 1px solid var(--sky-line);
-    padding-top: 1.25rem;
-  }
-  h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  p {
-    font-size: 0.9375rem;
-    color: var(--sky-muted);
-    line-height: 1.75;
-  }
-}
-.selected-work > h2,
 .home-bio > h2 {
   font-size: 1rem;
   margin-bottom: 1.25rem;
