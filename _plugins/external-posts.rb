@@ -63,6 +63,8 @@ module ExternalPosts
       end
 
       path = site.in_source_dir("_posts/#{slug}.md")
+      # A piece moved between feeds can briefly appear in both; keep the first copy
+      return if site.collections['posts'].docs.any? { |d| d.path == path }
       doc = Jekyll::Document.new(
         path, { :site => site, :collection => site.collections['posts'] }
       )
