@@ -47,3 +47,11 @@
 - **Context:** Adrian publishes research on plicara.ai and wanted one place to write rather than two, while keeping the personal site's existing posts.
 - **Decision:** Import both Plicara feeds, research (`https://plicara.ai/research/feed.xml`) and essays (`https://plicara.ai/essays/feed.xml`), with the theme's external-sources plugin, so each piece appears in the blog list and on the homepage, labeled "plicara research" or "plicara essays" and linking to the original. A piece that briefly appears in both feeds while moving between sections is imported once. Rename the "blog" tab to "writing" and the homepage heading to "latest writing", keeping the `/blog/` URLs. Keep the SQL and Mollify posts on the personal site. Hide the read-time estimate for imported posts, because the feed carries only summaries. Make imported stubs forward immediately, keep them out of the sitemap, and let the build continue if the feed is unreachable.
 - **Consequences:** New Plicara pieces appear on the next site build without copying text. The site test checks for Plicara links and skips when the feed was unavailable at build time. Plicara articles should keep Adrian's byline linking back here.
+
+## DEC-007: Remove selected work from the homepage
+
+- **Date:** 2026-10-14
+- **Status:** decided
+- **Context:** With the latest Plicara writing on the homepage, Adrian asked to remove the "selected work" section that DEC-003 had placed before the biography.
+- **Decision:** Remove the section and its styles. The homepage now runs from the contact links to "about me" and "latest writing". Projects remain one click away in the navigation. Keep the `featured`, `featured_title`, and `featured_summary` front matter on the project pages, so the section can be restored.
+- **Consequences:** The homepage is shorter and leads with the biography. Tests now check that the biography is present and that the section is absent.

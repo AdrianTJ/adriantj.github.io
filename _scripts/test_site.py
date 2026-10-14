@@ -59,11 +59,12 @@ class SiteTest(unittest.TestCase):
         html = (SITE / "blog/2026/mollify/index.html").read_text()
         self.assertIn("github.base_ref", html)
 
-    def test_home_has_contact_and_selected_work_before_biography(self):
+    def test_home_has_contact_and_biography_without_selected_work(self):
         html = (SITE / "index.html").read_text()
         self.assertIn('class="home-links"', html)
         self.assertIn('href="/cv/"', html)
-        self.assertLess(html.index('id="selected-work"'), html.index('class="home-bio'))
+        self.assertIn('class="home-bio', html)
+        self.assertNotIn('id="selected-work"', html)
         self.assertNotIn("Starting migration", html)
         self.assertNotIn("I also help build", html)
         for interest in ("agentic systems", "benchmarking", "novel AI research", "anomaly detection"):
